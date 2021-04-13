@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
 namespace Battle_of_the_Professor
 {
     /// <summary>
@@ -32,9 +23,9 @@ namespace Battle_of_the_Professor
             left2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
             right1.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
             right2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
+            // Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
+            // Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
+            // Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
 
         }
         int event1, event2, event3, event4, event5 = 0;
@@ -131,9 +122,9 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Wrong Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have lost some health!  health - 1");
                 player.health = player.health - 1;
-                Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
+                // Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
             }
             event1 = 1;
         }
@@ -144,9 +135,9 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Right Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have gained some intellect!  intellect + 1");
                 player.intellect = player.intellect + 1;
-                Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
+                // Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
             }
             event1 = 1;
         }
@@ -157,9 +148,9 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Wrong Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have lost some health!  health - 1");
                 player.health = player.health - 1;
-                Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
+                // Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
+                // Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
             }
             event1 = 1;
         }
