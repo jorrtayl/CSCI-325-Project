@@ -3,21 +3,10 @@
  * Date: 03 / 28 / 2021
  * Description: 
  */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
+using System;
+using System.Windows;
+using System.Windows.Media.Imaging;
 namespace Battle_of_the_Professor
 {
     /// <summary>
@@ -108,7 +97,10 @@ namespace Battle_of_the_Professor
 
         private void Map_Click(object sender, RoutedEventArgs e) // this is a test to load from a file, not working yet
         {
-            // Save_Load
+            Save_Load save = new Save_Load();
+
+            save.SaveData();
+            save.LoadData();
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
