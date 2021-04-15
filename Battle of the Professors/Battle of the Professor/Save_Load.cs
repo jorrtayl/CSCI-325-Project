@@ -13,13 +13,17 @@ namespace Battle_of_the_Professor
 
         public void SaveData() // needs to pass in health, intellect and sanity
         {
-            string[] lines = { "Icy", "Goots" }; // stores these values into lines, these values will be the stats and position of the player.
+            string[] lines = { "100", "1", "1" }; // stores these values into lines, these values will be the stats and position of the player.
 
-            if (!File.Exists("PlayerData.txt"))
+            // had to use a StreamWriter because the buffer was not closing for File.WriteAllLines
+            using (var sw = new StreamWriter("PlayerData.txt"))
             {
-                File.CreateText("PlayerData.txt"); // creates a base text file for the event if someone does not have the file.
+                if (!File.Exists("PlayerData.txt"))
+                {
+                    File.CreateText("PlayerData.txt"); // creates a base text file for the event if someone does not have the file.
+                }
             }
-            
+
             File.WriteAllLines("PlayerData.txt", lines); // writes all of these values to the text file.
         }
 
