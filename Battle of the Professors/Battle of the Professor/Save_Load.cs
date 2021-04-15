@@ -10,7 +10,7 @@ namespace Battle_of_the_Professor
         {
 
         }
-
+        
         public void SaveData() // needs to pass in health, intellect and sanity
         {
             string[] lines = { "100", "1", "1" }; // stores these values into lines, these values will be the stats and position of the player.
