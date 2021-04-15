@@ -155,26 +155,13 @@ namespace Battle_of_the_Professor
             event1 = 1;
         }
 
-        /*private void Map_Click(object sender, RoutedEventArgs e) // this is a test to load from a file, not working yet
-{
-// using (StreamReader reader = new StreamReader("test.txt"))
-//{
-/*for (int i = 0; i < a; i++)
-{
-AppendTextBoxLine("Some text");
-}*/
-        //testbox.Text = b.ToString();
-        //int[,] map = new int[save.row, save.col];
-        /*for(int i = 0; i < a; i++){
-            for(int j = 0; j < b; j++)
-            {
-                map[i, j] = reader.ReadInt32();
-                testbox.Text = map[i, j].ToString();
-                testbox.Text = " ";
-            }
+        private void Map_Click(object sender, RoutedEventArgs e) // this is a test to load from a file, not working yet
+        {
+            Save_Load save = new Save_Load();
+
+            save.SaveData();
+            save.LoadData();
         }
-        }
-    }*/
 
         // these are the button presses, which perform checks and change the pictures accordingly
         private void Right_Click(object sender, RoutedEventArgs e)
