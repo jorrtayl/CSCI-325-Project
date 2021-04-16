@@ -38,21 +38,30 @@ namespace Battle_of_the_Professor
             File.WriteAllLines("PlayerData.txt", stringLines); // writes all of these values to the text file.
         }
 
-        public object GetLoadData()
+        public void LoadData(ref Character player)
         {
-            string[] lines = File.ReadAllLines("PlayerData.txt"); // reads all lines of the text file.
+            string[] lines = File.ReadAllLines("PlayerData.txt");
             int[] intLines = new int[3];
-
             for (int i = 0; i < 3; i++)
             {
                 intLines[i] = Convert.ToInt32(lines[i]);
             }
 
-            health = intLines[0];
-            intellect = intLines[1];
-            sanity = intLines[2];
-
-            return new { health, intellect, sanity };
+            if (player != null)
+            {
+                player.health = intLines[0];
+                player.intellect = intLines[1];
+                player.sanity = intLines[2];
+            }
+            else
+            {
+                player = new Character(1, 1, 100)
+                {
+                    health = intLines[0],
+                    intellect = intLines[1],
+                    sanity = intLines[2]
+                };
+            }
         }
     }
 }

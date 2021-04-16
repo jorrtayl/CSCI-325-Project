@@ -159,7 +159,11 @@ namespace Battle_of_the_Professor
         {
             Save_Load load = new Save_Load(player);
 
-            load.GetLoadData();
+            load.LoadData(ref player);
+
+            Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
+            Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
+            Stats.AppendText("Intellect "); Stats.AppendText(player.intellect.ToString());
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
