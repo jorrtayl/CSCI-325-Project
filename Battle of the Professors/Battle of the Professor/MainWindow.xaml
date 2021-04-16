@@ -36,5 +36,8 @@
         <Button x:Name="Answer2" Content="Answer 2" Grid.Column="1" HorizontalAlignment="Left" Margin="592,340,0,0" VerticalAlignment="Top" Width="75" Click="Answer2_Click"/>
         <Button x:Name="Answer3" Content="Answer 3" Grid.Column="1" HorizontalAlignment="Left" Margin="592,371,0,0" VerticalAlignment="Top" Width="75" Click="Answer3_Click"/>
         <TextBox x:Name="Stats" Grid.Column="1" HorizontalAlignment="Left" Height="60" Margin="10,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Load" Content="Load" Grid.Column="1" HorizontalAlignment="Left" Margin="101.6,458,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Load_Click"/>
+        <Button x:Name="Save" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="189.6,458,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Save_Click"/>
     </Grid>
 </Window>

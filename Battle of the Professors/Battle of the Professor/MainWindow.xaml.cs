@@ -114,7 +114,7 @@ namespace Battle_of_the_Professor
             }
         }
         Maptest save = new Maptest(2, 1);
-        Character player = new Character(5, 5, 10);
+        Character player = new Character(1, 1, 100);
 
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
@@ -155,12 +155,18 @@ namespace Battle_of_the_Professor
             event1 = 1;
         }
 
-        private void Map_Click(object sender, RoutedEventArgs e) // this is a test to load from a file, not working yet
+        private void Load_Click(object sender, RoutedEventArgs e)
         {
-            Save_Load save = new Save_Load();
+            Save_Load load = new Save_Load(player);
+
+            load.GetLoadData();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            Save_Load save = new Save_Load(player);
 
             save.SaveData();
-            save.LoadData();
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
