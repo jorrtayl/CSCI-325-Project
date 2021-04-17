@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battle_of_the_Professor"
         mc:Ignorable="d"
-        Title="Window1" Height="519.753" Width="800">
+        Title="Main Menu" Height="519.753" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*" />
