@@ -9,7 +9,7 @@ namespace Battle_of_the_Professor
 
         // the constructor will be a parameterized constructor that contains the object for getting the stats: health, sanity, intellect.
         public GameState()
-        { 
+        {
 
         }
 
