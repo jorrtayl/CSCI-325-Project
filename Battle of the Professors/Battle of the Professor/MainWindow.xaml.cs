@@ -11,6 +11,9 @@ namespace Battle_of_the_Professor
     /// </summary>
     public partial class MainWindow : Window
     {
+        Maptest save = new Maptest(2, 1);
+        Character player = new Character(1, 1, 100);
+
         public MainWindow()
         {
             InitializeComponent();
@@ -96,8 +99,6 @@ namespace Battle_of_the_Professor
                 text.Text = "Pop Quiz Time!"; text.AppendText(Environment.NewLine); text.AppendText("what is the purpose of 'for' in programming?"); text.AppendText(Environment.NewLine);
                 text.AppendText("Choose an answer."); text.AppendText(Environment.NewLine); text.AppendText("1. A loop of the number 4"); text.AppendText(Environment.NewLine); text.AppendText("2. A loop that does an action a cerain amount of times"); text.AppendText(Environment.NewLine); text.AppendText("3. I think I am in the wrong class");
             }
-
-
         }
 
         private void btnLoad_Click(object sender, RoutedEventArgs e) // This was a test to try and load images, not currently used
@@ -113,8 +114,7 @@ namespace Battle_of_the_Professor
                 imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
             }
         }
-        Maptest save = new Maptest(2, 1);
-        Character player = new Character(1, 1, 100);
+        
 
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
@@ -157,9 +157,9 @@ namespace Battle_of_the_Professor
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
-            Save_Load load = new Save_Load(player);
+            Save_Load ManageData = new Save_Load(player);
 
-            load.LoadData(ref player);
+            ManageData.LoadData(ref player);
 
             Stats.Text = "Health "; Stats.AppendText(player.health.ToString()); Stats.AppendText(Environment.NewLine);
             Stats.AppendText("Sanity "); Stats.AppendText(player.sanity.ToString()); Stats.AppendText(Environment.NewLine);
