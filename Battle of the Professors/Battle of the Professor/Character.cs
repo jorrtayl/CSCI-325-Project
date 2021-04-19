@@ -4,13 +4,14 @@ namespace Battle_of_the_Professor {
     public abstract class Character
     {
         private List<IGameState> _observers = new List<IGameState>();
-        private int _sanity, _intellect, _health;
+        private int _intellect, _health;
+        private float _sanity;
 
-        public int Sanity { get => _sanity; set { _sanity = value; Notify(); } }
+        public float Sanity { get => _sanity; set { _sanity = value; Notify(); } }
         public int Intellect { get => _intellect; set { _intellect = value; Notify(); } }
         public int Health { get => _health; set { _health = value; Notify(); } }
 
-        public Character(int health, int sanity, int intellect)
+        public Character(int health, float sanity, int intellect)
         {
             _sanity = sanity;
             _intellect = intellect;

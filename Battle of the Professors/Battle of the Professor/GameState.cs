@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
@@ -22,7 +21,7 @@ namespace Battle_of_the_Professor
         
         public void Save(Character player) // needs to pass in health, intellect and sanity
         {
-            int[] lines = { player.Health, player.Sanity, player.Intellect }; // stores these values into lines, these values will be the stats and position of the player.
+            int[] lines = { player.Health, (int)player.Sanity, player.Intellect }; // stores these values into lines, these values will be the stats and position of the player.
             string[] stringLines = new string[3];
 
             for (int i = 0; i < 3; i++)

@@ -16,6 +16,9 @@ namespace Battle_of_the_Professor
         IGameState state = new GameState();
         Character player;
 
+        int event1, event2, event3, event4, event5 = 0;
+        bool choice;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,8 +40,6 @@ namespace Battle_of_the_Professor
 
             state.UpdateStats(player);
         }
-        int event1, event2, event3, event4, event5 = 0;
-        bool choice;
         
         private void dialogue_Click(object sender, RoutedEventArgs e)
         {
@@ -70,7 +71,6 @@ namespace Battle_of_the_Professor
             }
         }
 
-
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
             if (event1 == 0)
@@ -99,17 +99,6 @@ namespace Battle_of_the_Professor
                 player.Health = player.Health - 1;
             }
             event1 = 1;
-        }
-
-        private void Load_Click(object sender, RoutedEventArgs e)
-        {
-            player = state.Load();
-            player.Attach(state);
-        }
-
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            state.Save(player);
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
