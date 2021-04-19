@@ -1,0 +1,24 @@
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Battle of the Professor.exe.config
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Battle of the Professor.exe
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Battle of the Professor.pdb
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.csprojAssemblyReference.cache
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\App.g.cs
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor_MarkupCompile.cache
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor_MarkupCompile.lref
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.g.resources
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle_of_the_Professor.Properties.Resources.resources
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.csproj.GenerateResource.cache
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.csproj.CoreCompileInputs.cache
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.exe
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\Battle of the Professor.pdb
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\Closed.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\Horizontal.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\middle.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\Open.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\test1.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\Vertical.png
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\GettyImages-1039545254.jpg
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\Map.txt
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\bin\Debug\Map\test.txt
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\MainMenu.g.cs
+C:\Users\jorda\OneDrive\Desktop\CSCI 352\repos\CSCI-352-Project\Battle of the Professors\Battle of the Professor\obj\Debug\MainMenu.baml
