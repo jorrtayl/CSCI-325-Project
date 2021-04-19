@@ -13,12 +13,14 @@ namespace Battle_of_the_Professor
     public partial class MainWindow : Window
     {
         Map map = new Map(2, 1);
-        GameState state = new GameState();
+        IGameState state = new GameState();
         Character player;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            state.SetStats(Stats);
 
             player = state.Load();
             player.Attach(state);
@@ -32,14 +34,12 @@ namespace Battle_of_the_Professor
             left2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
             right1.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
             right2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            Stats.Text = "Health "; Stats.AppendText(player.Health.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Sanity "); Stats.AppendText(player.Sanity.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Intellect "); Stats.AppendText(player.Intellect.ToString());
 
+            state.UpdateStats(player);
         }
         int event1, event2, event3, event4, event5 = 0;
         bool choice;
-
+        
         private void dialogue_Click(object sender, RoutedEventArgs e)
         {
             BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
@@ -77,9 +77,6 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Wrong Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have lost some health!  health - 1");
                 player.Health = player.Health - 1;
-                Stats.Text = "Health "; Stats.AppendText(player.Health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.Sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.Intellect.ToString());
             }
             event1 = 1;
         }
@@ -90,10 +87,6 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Right Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have gained some intellect!  intellect + 1");
                 player.Intellect = player.Intellect + 1;
-
-                Stats.Text = "Health "; Stats.AppendText(player.Health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.Sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.Intellect.ToString());
             }
             event1 = 1;
         }
@@ -104,19 +97,14 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "Wrong Answer!"; text.AppendText(Environment.NewLine); text.AppendText("You have lost some health!  health - 1");
                 player.Health = player.Health - 1;
-
-                Stats.Text = "Health "; Stats.AppendText(player.Health.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Sanity "); Stats.AppendText(player.Sanity.ToString()); Stats.AppendText(Environment.NewLine);
-                Stats.AppendText("Intellect "); Stats.AppendText(player.Intellect.ToString());
             }
             event1 = 1;
         }
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
-            Stats.Text = "Health "; Stats.AppendText(player.Health.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Sanity "); Stats.AppendText(player.Sanity.ToString()); Stats.AppendText(Environment.NewLine);
-            Stats.AppendText("Intellect "); Stats.AppendText(player.Intellect.ToString());
+            player = state.Load();
+            player.Attach(state);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
 {
     class GameState : IGameState
     {
+        private TextBox _stats;
 
         // the constructor will be a parameterized constructor that contains the object for getting the stats: health, sanity, intellect.
         public GameState()
@@ -13,6 +15,11 @@ namespace Battle_of_the_Professor
 
         }
 
+        public void SetStats(TextBox stats)
+        {
+            _stats = stats;
+        }
+        
         public void Save(Character player) // needs to pass in health, intellect and sanity
         {
             int[] lines = { player.Health, player.Sanity, player.Intellect }; // stores these values into lines, these values will be the stats and position of the player.
@@ -41,7 +48,7 @@ namespace Battle_of_the_Professor
             {
                 return new Deprived(100, 1, 1);
             }
-            
+
             string[] lines = File.ReadAllLines("PlayerData.txt");
 
             int[] intLines = new int[3];
@@ -52,6 +59,11 @@ namespace Battle_of_the_Professor
             }
 
             return new Deprived(intLines[0], intLines[1], intLines[2]);
+        }
+
+        public void UpdateStats(Character player)
+        {
+            _stats.Text = $"Health: {player.Health}\nSanity: {player.Sanity}\nIntellect: {player.Intellect}";
         }
     }
 }

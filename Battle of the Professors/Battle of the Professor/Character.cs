@@ -27,6 +27,7 @@ namespace Battle_of_the_Professor {
             foreach (var observer in _observers)
             {
                 observer.Save(this);
+                observer.UpdateStats(this);
             }
         }
     }
