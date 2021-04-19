@@ -8,7 +8,6 @@ namespace Battle_of_the_Professor
     {
         private TextBox _stats;
 
-        // the constructor will be a parameterized constructor that contains the object for getting the stats: health, sanity, intellect.
         public GameState()
         {
 
