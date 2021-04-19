@@ -44,7 +44,7 @@ namespace Battle_of_the_Professor
         {
             if (!File.Exists("PlayerData.txt"))
             {
-                return new Deprived(100, 1, 1);
+                return new Deprived();
             }
 
             string[] lines = File.ReadAllLines("PlayerData.txt");

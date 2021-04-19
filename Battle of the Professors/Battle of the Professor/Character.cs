@@ -14,7 +14,7 @@ namespace Battle_of_the_Professor {
         public Character(int health, float sanity, int intellect)
         {
             _sanity = sanity;
-            _intellect = intellect;
+            _intellect = (int)(intellect * sanity);
             _health = health;
         }
 
@@ -23,7 +23,7 @@ namespace Battle_of_the_Professor {
             _observers.Add(observer);
         }
 
-        public void Notify()
+        public virtual void Notify()
         {
             foreach (var observer in _observers)
             {

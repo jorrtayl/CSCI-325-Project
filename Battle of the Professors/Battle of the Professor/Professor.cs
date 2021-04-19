@@ -8,11 +8,13 @@ namespace Battle_of_the_Professor
 {
     class Professor : Character
     {
-        public Professor(int _health, int _intellect, float _sanity) : base(_health, _sanity, _intellect)
+        public Professor() : base(100, .40f, 10)
         {
-            _health = 100;
-            _sanity = .40f; // 40% sanity
-            _intellect = (int)(10 * _sanity); // sanity makes you insane, lose intellect
+
+        }
+        public override void Notify()
+        {
+
         }
     }
 }
