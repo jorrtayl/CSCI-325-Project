@@ -15,7 +15,7 @@ namespace Battle_of_the_Professor
         {
             Events = new List<Event>()
             {
-                new Event()
+                new Event() //1
                 {
                     Question = "Pop Quiz Time!\nwhat is the purpose of 'for' in programming?\nChoose your answer wisely\n",
                     Answers = new []{ "1. A loop of the number 4", "2. A loop that does an action a cerain amount of times", "3. I think I am in the wrong class" },
@@ -23,9 +23,9 @@ namespace Battle_of_the_Professor
                     Perk = 1,
                     CorrectAnswer = 2,
                     IsTriggered = false,
-                    TriggerLocation = (2, 6)
+                    TriggerLocation = (5, 2)
                 },
-                new Event()
+                new Event() //2
                 {
                     Question = "Pop Quiz Time!\nWhich of the following can be used to define the member of a class externally?\nChoose your answer wisely\n",
                     Answers = new []{ "1. :", "2. ::", "3. #" },
@@ -33,7 +33,37 @@ namespace Battle_of_the_Professor
                     Perk = 1,
                     CorrectAnswer = 2,
                     IsTriggered = false,
-                    TriggerLocation = (4, 5)
+                    TriggerLocation = (9, 2)
+                },
+                new Event() //3
+                {
+                    Question = "Pop Quiz Time!\nWhich of these is a part that makes a computer run faster?\nChoose your answer wisely\n",
+                    Answers = new []{ "1. Using an SSD", "2. RGB Everything!", "3. Yelling and Hitting it" },
+                    Penalty = 2,
+                    Perk = 1,
+                    CorrectAnswer = 1,
+                    IsTriggered = false,
+                    TriggerLocation = (3, 4)
+                },
+                 new Event() //4
+                {
+                    Question = "Pop Quiz Time!\nWhat method is used to print text to the screen in C#?\nChoose your answer wisely\n",
+                    Answers = new []{ "1. cout <<", "2. printf ", "3. Console.WriteLine " },
+                    Penalty = 2,
+                    Perk = 1,
+                    CorrectAnswer = 3,
+                    IsTriggered = false,
+                    TriggerLocation = (3, 4)
+                },
+                  new Event() //5
+                {
+                    Question = "Pop Quiz Time!\nOf the following, what statement is only triggered if requirements are met?\nChoose your answer wisely\n",
+                    Answers = new []{ "1. if ", "2. for ", "3. Console.WriteLine " },
+                    Penalty = 2,
+                    Perk = 1,
+                    CorrectAnswer = 1,
+                    IsTriggered = false,
+                    TriggerLocation = (3, 4)
                 }
             };
         }
