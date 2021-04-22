@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Controls;
 
@@ -8,16 +9,40 @@ namespace Battle_of_the_Professor
     {
         private TextBox _stats;
 
+        public List<Event> Events { get; private set; }
+
         public GameState()
         {
-
+            Events = new List<Event>()
+            {
+                new Event()
+                {
+                    Question = "Pop Quiz Time!\nwhat is the purpose of 'for' in programming?\nChoose your answer wisely\n",
+                    Answers = new []{ "1. A loop of the number 4", "2. A loop that does an action a cerain amount of times", "3. I think I am in the wrong class" },
+                    Penalty = 2,
+                    Perk = 1,
+                    CorrectAnswer = 2,
+                    IsTriggered = false,
+                    TriggerLocation = (2, 6)
+                },
+                new Event()
+                {
+                    Question = "Pop Quiz Time!\nWhich of the following can be used to define the member of a class externally?\nChoose your answer wisely\n",
+                    Answers = new []{ "1. :", "2. ::", "3. #" },
+                    Penalty = 2,
+                    Perk = 1,
+                    CorrectAnswer = 2,
+                    IsTriggered = false,
+                    TriggerLocation = (4, 5)
+                }
+            };
         }
 
         public void SetStats(TextBox stats)
         {
             _stats = stats;
         }
-        
+
         public void Save(Character player) // needs to pass in health, intellect and sanity
         {
             int[] lines = { player.Health, (int)player.Sanity, player.Intellect }; // stores these values into lines, these values will be the stats and position of the player.

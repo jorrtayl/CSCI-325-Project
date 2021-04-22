@@ -61,12 +61,16 @@
     </Compile>
     <Compile Include="Character.cs" />
     <Compile Include="Deprived.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="IGameState.cs" />
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="StartMenu.xaml.cs">
+      <DependentUpon>StartMenu.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Professor.cs" />
@@ -128,6 +132,10 @@
     <Page Include="MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

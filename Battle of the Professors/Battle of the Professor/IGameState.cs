@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
 {
@@ -11,5 +12,7 @@ namespace Battle_of_the_Professor
         Character Load();
 
         void UpdateStats(Character player);
+
+        List<Event> Events { get; }
     }
 }

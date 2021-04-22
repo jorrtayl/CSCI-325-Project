@@ -7,15 +7,15 @@ namespace Battle_of_the_Professor {
         private int _intellect, _health;
         private float _sanity;
 
-        public float Sanity { get => _sanity; set { _sanity = value; Notify(); } }
-        public int Intellect { get => _intellect; set { _intellect = value; Notify(); } }
         public int Health { get => _health; set { _health = value; Notify(); } }
+        public float Sanity { get => _sanity; set { _sanity = value; Notify(); } }
+        public int Intellect { get => _intellect; set { _intellect = (int)(value * _sanity); Notify(); } }
 
         public Character(int health, float sanity, int intellect)
         {
-            _sanity = sanity;
-            _intellect = (int)(intellect * sanity);
             _health = health;
+            _sanity = sanity;
+            _intellect = intellect;
         }
 
         public void Attach(IGameState observer)
