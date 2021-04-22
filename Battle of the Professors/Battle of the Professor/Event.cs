@@ -5,6 +5,7 @@ namespace Battle_of_the_Professor
     public class Event
     {
         public string[] Answers { get; set; } // A list of possible answers for the question
+        public string StringAnswers { get; set; } //test for answers based on user input
         public int CorrectAnswer { get; set; } // The correct answer for this question
         public int Penalty { get; set; }
         public int Perk { get; set; }

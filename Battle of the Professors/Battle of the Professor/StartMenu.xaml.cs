@@ -83,6 +83,23 @@ namespace Battle_of_the_Professor
             }
         }
 
+        private void TextChecker_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentQuestion == null) return;
+
+            if (currentQuestion?.StringAnswers != TextAnswers.Text)
+            {
+                text.Text = currentQuestion.WrongAnswerReply;
+                player.Health = player.Health - currentQuestion.Penalty;
+            }
+            else
+            {
+                text.Text = currentQuestion.CorrectAnswerReply;
+                player.Intellect = player.Intellect + currentQuestion.Perk;
+            }
+            currentQuestion.IsTriggered = true;
+            currentQuestion = null;
+        }
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
@@ -223,5 +240,6 @@ namespace Battle_of_the_Professor
 
             SetEvent(map.Row, map.Col);
         }
+
     }
 }

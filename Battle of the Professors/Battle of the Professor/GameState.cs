@@ -53,7 +53,7 @@ namespace Battle_of_the_Professor
                     Perk = 1,
                     CorrectAnswer = 3,
                     IsTriggered = false,
-                    TriggerLocation = (3, 4)
+                    TriggerLocation = (11, 6)
                 },
                   new Event() //5
                 {
@@ -63,7 +63,17 @@ namespace Battle_of_the_Professor
                     Perk = 1,
                     CorrectAnswer = 1,
                     IsTriggered = false,
-                    TriggerLocation = (3, 4)
+                    TriggerLocation = (4, 6)
+                },
+                  new Event() //6
+                {
+                    Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
+                    Answers = new []{ "Please enter answer to the right and click check" },
+                    Penalty = 2,
+                    Perk = 1,
+                    StringAnswers = "C#",
+                    IsTriggered = false,
+                    TriggerLocation = (7, 2)
                 }
             };
         }
