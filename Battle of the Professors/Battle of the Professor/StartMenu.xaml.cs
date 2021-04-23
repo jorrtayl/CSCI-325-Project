@@ -21,7 +21,8 @@ namespace Battle_of_the_Professor
     /// </summary>
     public partial class StartMenu : Page
     {
-        Map map = new Map(7, 1);
+        BitmapImage GetImage(string location) => new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + location, UriKind.Absolute));
+
         IGameState state = new GameState();
         Event currentQuestion;
         Character player;
@@ -35,18 +36,25 @@ namespace Battle_of_the_Professor
             player = state.Load();
             player.Attach(state);
 
-            leftside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            rightside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Open.PNG", UriKind.Absolute));
-            Top.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            Bottom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            Middle.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\middle.PNG", UriKind.Absolute));
-            left1.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            left2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            right1.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-            right2.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
+            Middle.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"\Map\middle.PNG", UriKind.Absolute));
+
+            UpdateTiles();
 
             state.UpdateStats(player);
         }
+
+        private void UpdateTiles()
+        {
+            Top.Source = GetImage(state.Map.Top());
+            TopLeft.Source = GetImage(state.Map.TopLeft());
+            TopRight.Source = GetImage(state.Map.TopRight());
+            Left.Source = GetImage(state.Map.Left());
+            Right.Source = GetImage(state.Map.Right());
+            Bottom.Source = GetImage(state.Map.Bottom());
+            BottomLeft.Source = GetImage(state.Map.BottomLeft());
+            BottomRight.Source = GetImage(state.Map.BottomRight());
+        }
+
         private void dialogue_Click(object sender, RoutedEventArgs e)
         {
             BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
@@ -95,7 +103,7 @@ namespace Battle_of_the_Professor
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Perk;
+                player.Intellect = player.Intellect + currentQuestion.Gain;
             }
             currentQuestion.IsTriggered = true;
             currentQuestion = null;
@@ -112,7 +120,7 @@ namespace Battle_of_the_Professor
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Perk;
+                player.Intellect = player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -131,7 +139,7 @@ namespace Battle_of_the_Professor
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Perk;
+                player.Intellect = player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -150,7 +158,7 @@ namespace Battle_of_the_Professor
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Perk;
+                player.Intellect = player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -160,86 +168,76 @@ namespace Battle_of_the_Professor
         // these are the button presses, which perform checks and change the pictures accordingly
         private void Right_Click(object sender, RoutedEventArgs e)
         {
-
-            if (map.RightCheck(map.Row, map.Col) == true)
+            if (state.Map.RightCheck(state.Map.Row, state.Map.Col) == true)
             {
-                map.Col = map.Col + 1;
-                if (map.map[map.Row + 1, map.Col] == 0) { Bottom.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Bottom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row - 1, map.Col] == 0) { Top.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Top.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col + 1] == 0) { rightside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else rightside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col - 1] == 0) { leftside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else leftside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
+                state.Map.Col = state.Map.Col + 1;
+
+                UpdateTiles();
 
                 text.Text = "You have moved right!";
             }
-            else if (map.RightCheck(map.Row, map.Col) == false)
+            else
             {
                 text.Text = "You can't move that way!";
             }
 
-            SetEvent(map.Row, map.Col);
+            SetEvent(state.Map.Row, state.Map.Col);
+            state.Save(player);
         }
 
         private void Up_Click(object sender, RoutedEventArgs e)
         {
-            if (map.UpCheck(map.Row, map.Col) == true)
+            if (state.Map.UpCheck(state.Map.Row, state.Map.Col) == true)
             {
-                map.Row = map.Row - 1;
-                if (map.map[map.Row + 1, map.Col] == 0) { Bottom.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Bottom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row - 1, map.Col] == 0) { Top.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Top.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col + 1] == 0) { rightside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else rightside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col - 1] == 0) { leftside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else leftside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-
+                state.Map.Row = state.Map.Row - 1;
+                UpdateTiles();
                 text.Text = "You have moved up!";
             }
-            else if (map.UpCheck(map.Row, map.Col) == false)
+            else
             {
                 text.Text = "You can't move that way!";
             }
 
-            SetEvent(map.Row, map.Col);
+            SetEvent(state.Map.Row, state.Map.Col);
+            state.Save(player);
         }
 
         private void Left_Click(object sender, RoutedEventArgs e)
         {
-
-            if (map.LeftCheck(map.Row, map.Col) == true)
+            if (state.Map.LeftCheck(state.Map.Row, state.Map.Col) == true)
             {
-                map.Col = map.Col - 1;
-                if (map.map[map.Row + 1, map.Col] == 0) { Bottom.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Bottom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row - 1, map.Col] == 0) { Top.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Top.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col + 1] == 0) { rightside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else rightside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col - 1] == 0) { leftside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else leftside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
+                state.Map.Col = state.Map.Col - 1;
+
+                UpdateTiles();
 
                 text.Text = "You have moved left!";
             }
-            else if (map.LeftCheck(map.Row, map.Col) == false)
+            else
             {
                 text.Text = "You can't move that way!";
             }
 
-            SetEvent(map.Row, map.Col);
-
+            SetEvent(state.Map.Row, state.Map.Col);
+            state.Save(player);
         }
 
         private void Down_Click(object sender, RoutedEventArgs e)
         {
-            if (map.DownCheck(map.Row, map.Col) == true)
+            if (state.Map.DownCheck(state.Map.Row, state.Map.Col) == true)
             {
-                map.Row = map.Row + 1;
-                if (map.map[map.Row + 1, map.Col] == 0) { Bottom.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Bottom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row - 1, map.Col] == 0) { Top.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else Top.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col + 1] == 0) { rightside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else rightside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
-                if (map.map[map.Row, map.Col - 1] == 0) { leftside.Source = new BitmapImage(new Uri(@"\Map\Open.PNG", UriKind.Relative)); } else leftside.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\Closed.PNG", UriKind.Absolute));
+                state.Map.Row = state.Map.Row + 1;
+
+                UpdateTiles();
 
                 text.Text = "You have moved down!";
             }
-            else if (map.DownCheck(map.Row, map.Col) == false) 
+            else
             {
                 text.Text = "You can't move that way!";
             }
 
-            SetEvent(map.Row, map.Col);
+            SetEvent(state.Map.Row, state.Map.Col);
+            state.Save(player);
         }
-
     }
 }

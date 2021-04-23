@@ -8,8 +8,8 @@ namespace Battle_of_the_Professor
         public string StringAnswers { get; set; } //test for answers based on user input
         public int CorrectAnswer { get; set; } // The correct answer for this question
         public int Penalty { get; set; }
-        public int Perk { get; set; }
-        public string CorrectAnswerReply { get => $"Right Answer!\nYou have gained {Perk} intellect!"; }
+        public int Gain { get; set; }
+        public string CorrectAnswerReply { get => $"Right Answer!\nYou have gained {Gain} intellect!"; }
         public string WrongAnswerReply { get => $"Wrong Answer!\nYou have lost {Penalty} health!"; }
         public string Question { get; set; } // Asks the player a question
         public bool IsTriggered { get; set; } // Triggers the event to ask the question if the player steps on the TriggerLocation

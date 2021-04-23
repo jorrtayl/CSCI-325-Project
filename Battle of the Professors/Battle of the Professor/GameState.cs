@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
@@ -9,18 +10,20 @@ namespace Battle_of_the_Professor
     {
         private TextBox _stats;
 
-        public List<Event> Events { get; private set; }
+        public Event[] Events { get; private set; }
+        public Map Map { get; set; } // every time you have a public variable do a getter and setter. Also, try not to name it the same as the class.
 
         public GameState()
         {
-            Events = new List<Event>()
+            Map = new Map(7, 1);
+            Events = new[]
             {
                 new Event() //1
                 {
                     Question = "Pop Quiz Time!\nwhat is the purpose of 'for' in programming?\nChoose your answer wisely\n",
                     Answers = new []{ "1. A loop of the number 4", "2. A loop that does an action a cerain amount of times", "3. I think I am in the wrong class" },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     CorrectAnswer = 2,
                     IsTriggered = false,
                     TriggerLocation = (5, 2)
@@ -30,7 +33,7 @@ namespace Battle_of_the_Professor
                     Question = "Pop Quiz Time!\nWhich of the following can be used to define the member of a class externally?\nChoose your answer wisely\n",
                     Answers = new []{ "1. :", "2. ::", "3. #" },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     CorrectAnswer = 2,
                     IsTriggered = false,
                     TriggerLocation = (9, 2)
@@ -40,7 +43,7 @@ namespace Battle_of_the_Professor
                     Question = "Pop Quiz Time!\nWhich of these is a part that makes a computer run faster?\nChoose your answer wisely\n",
                     Answers = new []{ "1. Using an SSD", "2. RGB Everything!", "3. Yelling and Hitting it" },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     CorrectAnswer = 1,
                     IsTriggered = false,
                     TriggerLocation = (3, 4)
@@ -50,7 +53,7 @@ namespace Battle_of_the_Professor
                     Question = "Pop Quiz Time!\nWhat method is used to print text to the screen in C#?\nChoose your answer wisely\n",
                     Answers = new []{ "1. cout <<", "2. printf ", "3. Console.WriteLine " },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     CorrectAnswer = 3,
                     IsTriggered = false,
                     TriggerLocation = (11, 6)
@@ -60,7 +63,7 @@ namespace Battle_of_the_Professor
                     Question = "Pop Quiz Time!\nOf the following, what statement is only triggered if requirements are met?\nChoose your answer wisely\n",
                     Answers = new []{ "1. if ", "2. for ", "3. Console.WriteLine " },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     CorrectAnswer = 1,
                     IsTriggered = false,
                     TriggerLocation = (4, 6)
@@ -70,7 +73,7 @@ namespace Battle_of_the_Professor
                     Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
                     Answers = new []{ "Please enter answer to the right and click check" },
                     Penalty = 2,
-                    Perk = 1,
+                    Gain = 1,
                     StringAnswers = "C#",
                     IsTriggered = false,
                     TriggerLocation = (7, 2)
@@ -85,13 +88,14 @@ namespace Battle_of_the_Professor
 
         public void Save(Character player) // needs to pass in health, intellect and sanity
         {
-            int[] lines = { player.Health, (int)player.Sanity, player.Intellect }; // stores these values into lines, these values will be the stats and position of the player.
-            string[] stringLines = new string[3];
+            int[] lines = { player.Health, (int)player.Sanity, player.Intellect, Map.Row, Map.Col }; // stores these values into lines, these values will be the stats and position of the player.
+            string[] stringLines = new string[6];
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 stringLines[i] = Convert.ToString(lines[i]);
             }
+            stringLines[5] = string.Join(",", Events.Select(e => e.IsTriggered));
 
             // had to use a StreamWriter because the buffer was not closing for File.WriteAllLines
             using (var sw = new StreamWriter("PlayerData.txt"))
@@ -114,12 +118,21 @@ namespace Battle_of_the_Professor
 
             string[] lines = File.ReadAllLines("PlayerData.txt");
 
-            int[] intLines = new int[3];
+            int[] intLines = new int[5];
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 5; i++)
             {
                 intLines[i] = Convert.ToInt32(lines[i]);
             }
+
+            var eventsTriggered = lines[5].Split(',');
+
+            for (int i = 0; i < eventsTriggered.Length; i++)
+            {
+                Events[i].IsTriggered = Convert.ToBoolean(eventsTriggered[i]);
+            }
+
+            Map = new Map(intLines[3], intLines[4]);
 
             return new Deprived(intLines[0], intLines[1], intLines[2]);
         }

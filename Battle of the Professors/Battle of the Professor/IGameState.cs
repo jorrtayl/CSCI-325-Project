@@ -13,6 +13,8 @@ namespace Battle_of_the_Professor
 
         void UpdateStats(Character player);
 
-        List<Event> Events { get; }
+        Event[] Events { get; }
+
+        Map Map { get; }
     }
 }
