@@ -6,14 +6,25 @@ using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
 {
-    class GameState : IGameState
+    public sealed class GameState : IGameState
     {
         private TextBox _stats;
 
         public Event[] Events { get; private set; }
+
         public Map Map { get; set; } // every time you have a public variable do a getter and setter. Also, try not to name it the same as the class.
 
-        public GameState()
+        // Singleton Implementation
+        private static readonly IGameState _instance = new GameState();
+
+        public static IGameState Instance { get => _instance; }
+
+        private GameState()
+        {
+            Reset();
+        }
+
+        private void Reset()
         {
             Map = new Map(7, 1);
             Events = new[]
@@ -86,7 +97,7 @@ namespace Battle_of_the_Professor
             _stats = stats;
         }
 
-        public void Save(Character player) // needs to pass in health, intellect and sanity
+        public void Save(Character player)
         {
             int[] lines = { player.Health, (int)player.Sanity, player.Intellect, Map.Row, Map.Col }; // stores these values into lines, these values will be the stats and position of the player.
             string[] stringLines = new string[6];
@@ -98,43 +109,44 @@ namespace Battle_of_the_Professor
             stringLines[5] = string.Join(",", Events.Select(e => e.IsTriggered));
 
             // had to use a StreamWriter because the buffer was not closing for File.WriteAllLines
-            using (var sw = new StreamWriter("PlayerData.txt"))
+            using (var sw = new StreamWriter($"{player.Name}.txt"))
             {
-                if (!File.Exists("PlayerData.txt"))
+                if (!File.Exists($"{player.Name}.txt"))
                 {
-                    File.CreateText("PlayerData.txt");
+                    File.CreateText($"{player.Name}.txt");
                 }
             }
 
-            File.WriteAllLines("PlayerData.txt", stringLines); // writes all of these values to the text file.
+            File.WriteAllLines($"{player.Name}.txt", stringLines); // writes all of these values to the text file.
         }
 
-        public Character Load()
+        public Character Load(Character player = null) // optional parameter
         {
-            if (!File.Exists("PlayerData.txt"))
+            if (player != null && File.Exists($"{player.Name}.txt"))
             {
-                return new Deprived();
+                string[] lines = File.ReadAllLines($"{player.Name}.txt");
+
+                int[] intLines = new int[5];
+
+                for (int i = 0; i < 5; i++)
+                {
+                    intLines[i] = Convert.ToInt32(lines[i]);
+                }
+
+                var eventsTriggered = lines[5].Split(',');
+
+                for (int i = 0; i < eventsTriggered.Length; i++)
+                {
+                    Events[i].IsTriggered = Convert.ToBoolean(eventsTriggered[i]);
+                }
+
+                Map = new Map(intLines[3], intLines[4]);
+
+                return new Deprived(player.Name, intLines[0], intLines[1], intLines[2]);
             }
+            Reset();
 
-            string[] lines = File.ReadAllLines("PlayerData.txt");
-
-            int[] intLines = new int[5];
-
-            for (int i = 0; i < 5; i++)
-            {
-                intLines[i] = Convert.ToInt32(lines[i]);
-            }
-
-            var eventsTriggered = lines[5].Split(',');
-
-            for (int i = 0; i < eventsTriggered.Length; i++)
-            {
-                Events[i].IsTriggered = Convert.ToBoolean(eventsTriggered[i]);
-            }
-
-            Map = new Map(intLines[3], intLines[4]);
-
-            return new Deprived(intLines[0], intLines[1], intLines[2]);
+            return null;
         }
 
         public void UpdateStats(Character player)

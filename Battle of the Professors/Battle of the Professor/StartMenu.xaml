@@ -14,26 +14,21 @@
             <ColumnDefinition Width="349*" />
             <ColumnDefinition Width="30*" />
         </Grid.ColumnDefinitions>
-        <Image Margin="56,12,596.333,331.667" x:Name="imgPhoto"
-        Stretch="Fill" Grid.ColumnSpan="2" />
-        <Button Height="23" HorizontalAlignment="Left"
-        Margin="10,0,0,93" x:Name="btnLoad" VerticalAlignment="Bottom"
-        Width="75" Click="btnLoad_Click" Grid.ColumnSpan="2" Content="_Load"/>
 
         <Button x:Name="MoveRight" Content="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="206.667,349,0,0" VerticalAlignment="Top" Width="41" Height="40" Click="Right_Click"/>
         <Button x:Name="MoveLeft" Content="Left" Grid.Column="1" HorizontalAlignment="Left" Margin="114.667,349,0,0" VerticalAlignment="Top" Width="41" Height="40" Click="Left_Click"/>
-        <Button x:Name="MoveDown" Content="Down" Grid.Column="1" HorizontalAlignment="Left" Margin="160.667,394,0,0" VerticalAlignment="Top" Width="41" Height="40" Click="Down_Click" RenderTransformOrigin="-0.939,0.735"/>
+        <Button x:Name="MoveDown" Content="Down" Grid.Column="1" HorizontalAlignment="Left" Margin="161,394,0,0" Width="41" Click="Down_Click" RenderTransformOrigin="-0.939,0.735" Height="40" VerticalAlignment="Top"/>
         <Button x:Name="MoveUp" Content="UP" Grid.Column="1" HorizontalAlignment="Left" Margin="160.667,310,0,0" VerticalAlignment="Top" Width="41" Height="40" RenderTransformOrigin="0.609,1.513" Click="Up_Click"/>
-        <Image Name="Middle" Grid.Column="1" HorizontalAlignment="Left" Height="97.348" Margin="259.429,107.348,0,0" VerticalAlignment="Top" Width="209.88"/>
+        <Image Name="Middle" Grid.Column="1" HorizontalAlignment="Left" Height="98" Margin="259,107,0,0" VerticalAlignment="Top" Width="210"/>
         <Image Name="Bottom"  Grid.Column="1" HorizontalAlignment="Left" Height="97" Margin="254,207,0,0" VerticalAlignment="Top" Width="210"/>
         <Image Name="Right"  Grid.Column="1" HorizontalAlignment="Left" Height="97" Margin="464,110,0,0" VerticalAlignment="Top" Width="210"/>
-        <TextBox Name="text" Grid.Column="1" HorizontalAlignment="Left" Height="135" Margin="270.667,310,0,0" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=Explicit}" VerticalAlignment="Top" Width="208"/>
+        <TextBox Name="text" Grid.Column="1" HorizontalAlignment="Left" Margin="271,310,0,0" TextWrapping="Wrap" Text="{Binding Title, UpdateSourceTrigger=Explicit}" Width="208" Height="135" VerticalAlignment="Top"/>
         <Image x:Name="Top"  Grid.Column="1" HorizontalAlignment="Left" Height="97" Margin="254,12,0,0" VerticalAlignment="Top" Width="210"/>
         <Image x:Name="TopLeft"  HorizontalAlignment="Left" Height="97" Margin="44,12,0,0" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
-        <Image x:Name="BottomLeft"  HorizontalAlignment="Left" Height="97" Margin="45,207,0,0" VerticalAlignment="Top" Width="209" Grid.Column="1"/>
-        <Image x:Name="TopRight"  Grid.Column="1" HorizontalAlignment="Left" Height="97" Margin="464,12,0,0" VerticalAlignment="Top" Width="210"/>
-        <Image x:Name="BottomRight"  Grid.Column="1" HorizontalAlignment="Left" Height="97" Margin="464,207,0,0" VerticalAlignment="Top" Width="210"/>
-        <Image x:Name="Left"  HorizontalAlignment="Left" Height="97" Margin="44,109,0,0" VerticalAlignment="Top" Width="210" Grid.Column="1"/>
+        <Image x:Name="BottomLeft"  HorizontalAlignment="Left" Margin="45,207,0,0" Width="209" Grid.Column="1" Height="97" VerticalAlignment="Top"/>
+        <Image x:Name="TopRight"  Grid.Column="1" Height="97" Margin="0,12,158,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="210"/>
+        <Image x:Name="BottomRight"  Grid.Column="1" Height="97" Margin="0,207,158,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="210"/>
+        <Image x:Name="Left"  HorizontalAlignment="Left" Margin="44,109,0,0" Width="210" Grid.Column="1" Height="97" VerticalAlignment="Top"/>
         <Button x:Name="Answer1" Content="Answer 1" Grid.Column="1" HorizontalAlignment="Left" Margin="502.667,310,0,0" VerticalAlignment="Top" Width="75" Click="Answer1_Click"/>
         <Button x:Name="Answer2" Content="Answer 2" Grid.Column="1" HorizontalAlignment="Left" Margin="598.667,310,0,0" VerticalAlignment="Top" Width="75" Click="Answer2_Click" RenderTransformOrigin="-0.204,0.673">
             <Button.RenderTransform>
@@ -48,7 +43,9 @@
         <Button x:Name="Answer3" Content="Answer 3" Grid.Column="1" HorizontalAlignment="Left" Margin="552.667,334,0,0" VerticalAlignment="Top" Width="75" Click="Answer3_Click" RenderTransformOrigin="1.07,-0.507"/>
         <TextBox x:Name="Stats" HorizontalAlignment="Left" Height="60" Margin="11,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.357,0.427" Grid.ColumnSpan="2"/>
         <Button x:Name="TextAnswer" Content="Check" Grid.Column="1" HorizontalAlignment="Left" Margin="552.667,413,0,0" VerticalAlignment="Top" Width="75" Click="TextChecker_Click"/>
-        <TextBox x:Name="TextAnswers" Grid.Column="1" HorizontalAlignment="Left" Height="47" Margin="502.667,361,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171"/>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="26.667,417,0,0" RenderTransformOrigin="0.093,-2.573"/>
+        <TextBox x:Name="TextAnswers" Grid.Column="1" HorizontalAlignment="Left" Height="47" Margin="502.667,361,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" TextChanged="TextAnswers_TextChanged"/>
+        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="58,417,0,0" RenderTransformOrigin="0.093,-2.573"/>
+        <Button Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnExit" Content="EXIT" HorizontalAlignment="Left" Margin="10,417,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="btnExit_Click"/>
     </Grid>
 </Page>

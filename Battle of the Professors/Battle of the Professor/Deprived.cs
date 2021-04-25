@@ -2,14 +2,13 @@
 {
     public class Deprived : Character
     {
-        public Deprived() : base(100, 1f, 10)
+        public Deprived(string name) : base(name, 100, 1f, 10)
         {
 
         }
-
-        public Deprived(int health, float sanity, int intellect) : base(health, sanity, intellect)
+        public Deprived(string name, int health, float sanity, int intellect) : base(name, health, sanity, intellect)
         {
-            
+
         }
     }
 }

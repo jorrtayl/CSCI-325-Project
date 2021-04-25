@@ -63,11 +63,20 @@
     <Compile Include="Deprived.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="IGameState.cs" />
+    <Compile Include="LoadGamePage.xaml.cs">
+      <DependentUpon>LoadGamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="NewGamePage.xaml.cs">
+      <DependentUpon>NewGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Start.xaml.cs">
+      <DependentUpon>Start.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartMenu.xaml.cs">
       <DependentUpon>StartMenu.xaml</DependentUpon>
     </Compile>
@@ -129,9 +138,21 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="LoadGamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewGamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Start.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartMenu.xaml">
       <SubType>Designer</SubType>

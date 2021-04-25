@@ -9,7 +9,7 @@ namespace Battle_of_the_Professor
 
         void SetStats(TextBox stats);
 
-        Character Load();
+        Character Load(Character player);
 
         void UpdateStats(Character player);
 

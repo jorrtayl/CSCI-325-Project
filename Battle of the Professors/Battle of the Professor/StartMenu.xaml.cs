@@ -23,24 +23,25 @@ namespace Battle_of_the_Professor
     {
         BitmapImage GetImage(string location) => new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + location, UriKind.Absolute));
 
-        IGameState state = new GameState();
+        IGameState state = GameState.Instance;
         Event currentQuestion;
-        Character player;
+        Character _player;
 
-        public StartMenu()
+        public StartMenu(Character player)
         {
             InitializeComponent();
 
-            state.SetStats(Stats);
+            state.SetStats(Stats); // sets player stats in the TextBox
 
-            player = state.Load();
-            player.Attach(state);
+            _player = player;
+
+            _player.Attach(state);
 
             Middle.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"\Map\middle.PNG", UriKind.Absolute));
 
             UpdateTiles();
 
-            state.UpdateStats(player);
+            state.UpdateStats(_player);
         }
 
         private void UpdateTiles()
@@ -59,20 +60,6 @@ namespace Battle_of_the_Professor
         {
             BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
-        }
-
-        private void btnLoad_Click(object sender, RoutedEventArgs e) // This was a test to try and load images, not currently used
-        {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-
-            if (op.ShowDialog() == true)
-            {
-                imgPhoto.Source = new BitmapImage(new Uri(op.FileName));
-            }
         }
 
         private void SetEvent(int row, int col)
@@ -98,12 +85,12 @@ namespace Battle_of_the_Professor
             if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
                 text.Text = currentQuestion.WrongAnswerReply;
-                player.Health = player.Health - currentQuestion.Penalty;
+                _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Gain;
+                _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
             currentQuestion.IsTriggered = true;
             currentQuestion = null;
@@ -115,12 +102,12 @@ namespace Battle_of_the_Professor
             if (currentQuestion?.CorrectAnswer != 1)
             {
                 text.Text = currentQuestion.WrongAnswerReply;
-                player.Health = player.Health - currentQuestion.Penalty;
+                _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Gain;
+                _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -134,12 +121,12 @@ namespace Battle_of_the_Professor
             if (currentQuestion?.CorrectAnswer != 2)
             {
                 text.Text = currentQuestion.WrongAnswerReply;
-                player.Health = player.Health - currentQuestion.Penalty;
+                _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Gain;
+                _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -153,12 +140,12 @@ namespace Battle_of_the_Professor
             if (currentQuestion?.CorrectAnswer != 3)
             {
                 text.Text = currentQuestion.WrongAnswerReply;
-                player.Health = player.Health - currentQuestion.Penalty;
+                _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
                 text.Text = currentQuestion.CorrectAnswerReply;
-                player.Intellect = player.Intellect + currentQuestion.Gain;
+                _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
             currentQuestion.IsTriggered = true;
@@ -182,7 +169,7 @@ namespace Battle_of_the_Professor
             }
 
             SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(player);
+            state.Save(_player);
         }
 
         private void Up_Click(object sender, RoutedEventArgs e)
@@ -199,7 +186,7 @@ namespace Battle_of_the_Professor
             }
 
             SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(player);
+            state.Save(_player);
         }
 
         private void Left_Click(object sender, RoutedEventArgs e)
@@ -218,7 +205,7 @@ namespace Battle_of_the_Professor
             }
 
             SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(player);
+            state.Save(_player);
         }
 
         private void Down_Click(object sender, RoutedEventArgs e)
@@ -237,7 +224,17 @@ namespace Battle_of_the_Professor
             }
 
             SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(player);
+            state.Save(_player);
+        }
+
+        private void TextAnswers_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Start());
         }
     }
 }

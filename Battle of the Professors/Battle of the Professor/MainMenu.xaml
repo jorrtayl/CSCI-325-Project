@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battle_of_the_Professor"
                   ShowsNavigationUI="False"
-                  Source="StartMenu.xaml"
+                  Source="Start.xaml"
         mc:Ignorable="d"
-        Title="Main Menu" Height="519.753" Width="800"/>
+        Title="MainMenu" Height="500" Width="1000"/>

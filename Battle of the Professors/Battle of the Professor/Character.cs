@@ -10,9 +10,11 @@ namespace Battle_of_the_Professor {
         public int Health { get => _health; set { _health = value; Notify(); } }
         public float Sanity { get => _sanity; set { _sanity = value; Notify(); } }
         public int Intellect { get => _intellect; set { _intellect = (int)(value * _sanity); Notify(); } }
+        public string Name { get; set; }
 
-        public Character(int health, float sanity, int intellect)
+        public Character(string name, int health, float sanity, int intellect)
         {
+            Name = name;
             _health = health;
             _sanity = sanity;
             _intellect = intellect;
@@ -20,7 +22,7 @@ namespace Battle_of_the_Professor {
 
         public void Attach(IGameState observer)
         {
-            _observers.Add(observer);
+            _observers.Add(observer); // adds observer into the list of _observers
         }
 
         public virtual void Notify()
