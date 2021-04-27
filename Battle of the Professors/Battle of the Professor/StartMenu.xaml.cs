@@ -18,6 +18,8 @@ namespace Battle_of_the_Professor
         IGameState state = GameState.Instance;
         Event currentQuestion;
         Character _player;
+        //Professor _professor;
+        int trig = 1;
 
         public StartMenu(Character player)
         {
@@ -57,16 +59,27 @@ namespace Battle_of_the_Professor
         private void SetEvent(int row, int col)
         {
             currentQuestion = state.Events.FirstOrDefault(ev => ev.ShouldTrigger(row, col));
-
             if (currentQuestion != null)
             {
+                classroom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\classroom.JFIF", UriKind.Absolute));
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answers)
                 {
                     answerText += $"{answer}\n";
                 }
-
                 text.Text = $"{currentQuestion.Question}{answerText}";
+            }
+        }
+        private void BossEvent(int trig)
+        {
+            if(trig == 1) {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb1)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb1}{answerText}";
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb1;
             }
         }
 
@@ -85,7 +98,9 @@ namespace Battle_of_the_Professor
                 _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
             currentQuestion.IsTriggered = true;
+            if(currentQuestion.TriggerLocation == (7, 18)){ BossEvent(trig); trig++; return; }
             currentQuestion = null;
+            classroom.Source = null;
         }
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +118,9 @@ namespace Battle_of_the_Professor
             }
 
             currentQuestion.IsTriggered = true;
+            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
+            classroom.Source = null;
         }
 
         private void Answer2_Click(object sender, RoutedEventArgs e)
@@ -122,7 +139,9 @@ namespace Battle_of_the_Professor
             }
 
             currentQuestion.IsTriggered = true;
+            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
+            classroom.Source = null;
         }
 
         private void Answer3_Click(object sender, RoutedEventArgs e)
@@ -141,7 +160,9 @@ namespace Battle_of_the_Professor
             }
 
             currentQuestion.IsTriggered = true;
+            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
+            classroom.Source = null;
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
