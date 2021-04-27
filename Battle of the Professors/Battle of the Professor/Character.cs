@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace Battle_of_the_Professor {
+namespace Battle_of_the_Professor
+{
     public abstract class Character
     {
         private List<IGameState> _observers = new List<IGameState>();

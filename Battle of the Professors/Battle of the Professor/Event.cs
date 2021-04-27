@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Battle_of_the_Professor
+﻿namespace Battle_of_the_Professor
 {
     public class Event
     {
