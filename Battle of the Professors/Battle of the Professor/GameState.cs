@@ -87,6 +87,33 @@ namespace Battle_of_the_Professor
                     StringAnswers = "C#",
                     IsTriggered = false,
                     TriggerLocation = (7, 2)
+                },
+                  new Event() //Boss Test
+                {
+                    Question = "Hello my student, I see you have managed to get this far! The question is can you go all the way?\n",
+                    Answers = new[]{"1. Of course!", "2. No Way!", "3. Seriously I am in the wrong class"},
+                    CorrectAnswer = 1,
+                    Questionb1 = "Ready for the first question? Too bad here it comes!\n generic question?\n",
+                    Answersb1 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb1 = 2,
+                    IsTriggered = false,
+                    TriggerLocation = (7, 18)
+                },
+                  new Event() //Boss Test
+                {
+                    Question = "Ready for the first question? Too bad here it comes!\n generic question?\n",
+                    Answers = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswer = 2,
+                    Penalty = 10,
+                    IsTriggered = false,
+                },
+                   new Event() //Boss Test
+                {
+                    Question = "2nd questiion!\n generic question?\n",
+                    Answers = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswer = 2,
+                    Penalty = 10,
+                    IsTriggered = false,
                 }
             };
         }
