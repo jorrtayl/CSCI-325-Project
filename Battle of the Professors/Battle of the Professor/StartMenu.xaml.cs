@@ -61,7 +61,7 @@ namespace Battle_of_the_Professor
             currentQuestion = state.Events.FirstOrDefault(ev => ev.ShouldTrigger(row, col));
             if (currentQuestion != null)
             {
-                classroom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\classroom.JFIF", UriKind.Absolute));
+                classroom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\classroom.jfif", UriKind.Absolute));
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answers)
                 {
