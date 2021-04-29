@@ -121,6 +121,56 @@ namespace Battle_of_the_Professor
                 text.Text = $"{currentQuestion.Questionb5}{answerText}";
                 currentQuestion.CorrectAnswerb5 = currentQuestion.CorrectAnswerb5;
             }
+            if (trig == 1)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb6)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb6}{answerText}";
+                currentQuestion.CorrectAnswerb6 = currentQuestion.CorrectAnswerb6;
+            }
+            if (trig == 2)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb7)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb7}{answerText}";
+                currentQuestion.CorrectAnswerb7 = currentQuestion.CorrectAnswerb7;
+            }
+            if (trig == 3)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb8)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb8}{answerText}";
+                currentQuestion.CorrectAnswerb8 = currentQuestion.CorrectAnswerb8;
+            }
+            if (trig == 4)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb9)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb9}{answerText}";
+                currentQuestion.CorrectAnswerb9 = currentQuestion.CorrectAnswerb9;
+            }
+            if (trig == 10)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb10)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb10}{answerText}";
+                currentQuestion.CorrectAnswerb10 = currentQuestion.CorrectAnswerb10;
+            }
         }
 
         private void TextChecker_Click(object sender, RoutedEventArgs e)

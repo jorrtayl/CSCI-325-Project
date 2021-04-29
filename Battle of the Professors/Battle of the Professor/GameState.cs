@@ -88,6 +88,46 @@ namespace Battle_of_the_Professor
                     IsTriggered = false,
                     TriggerLocation = (7, 2)
                 },
+                   new Event() //7
+                {
+                    Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
+                    Answers = new []{ "Please enter answer to the right and click check" },
+                    Penalty = 2,
+                    Gain = 1,
+                    StringAnswers = "C#",
+                    IsTriggered = false,
+                    TriggerLocation = (7, 2)
+                },
+                    new Event() //8
+                {
+                    Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
+                    Answers = new []{ "Please enter answer to the right and click check" },
+                    Penalty = 2,
+                    Gain = 1,
+                    StringAnswers = "C#",
+                    IsTriggered = false,
+                    TriggerLocation = (7, 2)
+                },
+                     new Event() //9
+                {
+                    Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
+                    Answers = new []{ "Please enter answer to the right and click check" },
+                    Penalty = 2,
+                    Gain = 1,
+                    StringAnswers = "C#",
+                    IsTriggered = false,
+                    TriggerLocation = (7, 2)
+                },
+                      new Event() //10
+                {
+                    Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
+                    Answers = new []{ "Please enter answer to the right and click check" },
+                    Penalty = 2,
+                    Gain = 1,
+                    StringAnswers = "C#",
+                    IsTriggered = false,
+                    TriggerLocation = (7, 2)
+                },
                   new Event() //Boss Test
                 {
                     Question = "Hello my student, I see you have managed to get this far! The question is can you go all the way?\n",
@@ -108,6 +148,21 @@ namespace Battle_of_the_Professor
                     Questionb5 = "5th questiion!\n generic question?\n",
                     Answersb5 = new[]{"1. answer!", "answer!", "answer"},
                     CorrectAnswerb5 = 2,
+                    Questionb6 = "Ready for the first question? Too bad here it comes!\n generic question?\n",
+                    Answersb6 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb6 = 2,
+                    Questionb7 = "2nd questiion!\n generic question?\n",
+                    Answersb7 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb7 = 2,
+                    Questionb8 = "3rd questiion!\n generic question?\n",
+                    Answersb8 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb8 = 2,
+                    Questionb9 = "4th questiion!\n generic question?\n",
+                    Answersb9 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb9 = 2,
+                    Questionb10 = "5th questiion!\n generic question?\n",
+                    Answersb10 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb10 = 2,
                     IsTriggered = false,
                     TriggerLocation = (7, 18)
                 }

@@ -20,15 +20,30 @@
         public string Questionb3 { get; set; }
         public string Questionb4 { get; set; }
         public string Questionb5 { get; set; }
+        public string Questionb6 { get; set; }
+        public string Questionb7 { get; set; }
+        public string Questionb8 { get; set; }
+        public string Questionb9 { get; set; }
+        public string Questionb10 { get; set; }
         public string[] Answersb1 { get; set; }
         public string[] Answersb2 { get; set; }
         public string[] Answersb3 { get; set; }
         public string[] Answersb4 { get; set; }
         public string[] Answersb5 { get; set; }
+        public string[] Answersb6 { get; set; }
+        public string[] Answersb7 { get; set; }
+        public string[] Answersb8 { get; set; }
+        public string[] Answersb9 { get; set; }
+        public string[] Answersb10 { get; set; }
         public int CorrectAnswerb1 { get; set; }
         public int CorrectAnswerb2 { get; set; }
         public int CorrectAnswerb3 { get; set; }
         public int CorrectAnswerb4 { get; set; }
         public int CorrectAnswerb5 { get; set; }
+        public int CorrectAnswerb6 { get; set; }
+        public int CorrectAnswerb7 { get; set; }
+        public int CorrectAnswerb8 { get; set; }
+        public int CorrectAnswerb9 { get; set; }
+        public int CorrectAnswerb10 { get; set; }
     }
 }
