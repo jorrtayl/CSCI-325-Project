@@ -16,13 +16,19 @@
         public bool ShouldTrigger(int row, int col) => (TriggerLocation.Row == row && TriggerLocation.Col == col) && !IsTriggered; // Checks if it should trigger or not
         // this is test stuff, may not be used
         public string Questionb1 { get; set; }
-        public string bossText2 { get; set; }
-        public string bossText3 { get; set; }
-        public string bossText4 { get; set; }
+        public string Questionb2 { get; set; }
+        public string Questionb3 { get; set; }
+        public string Questionb4 { get; set; }
+        public string Questionb5 { get; set; }
         public string[] Answersb1 { get; set; }
-        public string[] bossAnswers2 { get; set; }
-        public string[] bossAnswers3 { get; set; }
-        public string[] bossAnswers4 { get; set; }
+        public string[] Answersb2 { get; set; }
+        public string[] Answersb3 { get; set; }
+        public string[] Answersb4 { get; set; }
+        public string[] Answersb5 { get; set; }
         public int CorrectAnswerb1 { get; set; }
+        public int CorrectAnswerb2 { get; set; }
+        public int CorrectAnswerb3 { get; set; }
+        public int CorrectAnswerb4 { get; set; }
+        public int CorrectAnswerb5 { get; set; }
     }
 }

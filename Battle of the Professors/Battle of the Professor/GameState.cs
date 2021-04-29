@@ -96,24 +96,20 @@ namespace Battle_of_the_Professor
                     Questionb1 = "Ready for the first question? Too bad here it comes!\n generic question?\n",
                     Answersb1 = new[]{"1. answer!", "answer!", "answer"},
                     CorrectAnswerb1 = 2,
+                    Questionb2 = "2nd questiion!\n generic question?\n",
+                    Answersb2 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb2 = 2,
+                    Questionb3 = "3rd questiion!\n generic question?\n",
+                    Answersb3 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb3 = 2,
+                    Questionb4 = "4th questiion!\n generic question?\n",
+                    Answersb4 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb4 = 2,
+                    Questionb5 = "5th questiion!\n generic question?\n",
+                    Answersb5 = new[]{"1. answer!", "answer!", "answer"},
+                    CorrectAnswerb5 = 2,
                     IsTriggered = false,
                     TriggerLocation = (7, 18)
-                },
-                  new Event() //Boss Test
-                {
-                    Question = "Ready for the first question? Too bad here it comes!\n generic question?\n",
-                    Answers = new[]{"1. answer!", "answer!", "answer"},
-                    CorrectAnswer = 2,
-                    Penalty = 10,
-                    IsTriggered = false,
-                },
-                   new Event() //Boss Test
-                {
-                    Question = "2nd questiion!\n generic question?\n",
-                    Answers = new[]{"1. answer!", "answer!", "answer"},
-                    CorrectAnswer = 2,
-                    Penalty = 10,
-                    IsTriggered = false,
                 }
             };
         }

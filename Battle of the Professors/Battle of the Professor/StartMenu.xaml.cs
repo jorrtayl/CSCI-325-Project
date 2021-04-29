@@ -50,7 +50,7 @@ namespace Battle_of_the_Professor
             BottomRight.Source = GetImage(state.Map.BottomRight());
         }
 
-        private void dialogue_Click(object sender, RoutedEventArgs e)
+        private void Dialogue_Click(object sender, RoutedEventArgs e)
         {
             BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
@@ -79,7 +79,47 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb1}{answerText}";
-                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb1;
+                currentQuestion.CorrectAnswerb1 = currentQuestion.CorrectAnswerb1;
+            }
+            if (trig == 2)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb2)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb2}{answerText}";
+                currentQuestion.CorrectAnswerb2 = currentQuestion.CorrectAnswerb2;
+            }
+            if (trig == 3)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb3)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb3}{answerText}";
+                currentQuestion.CorrectAnswerb3 = currentQuestion.CorrectAnswerb3;
+            }
+            if (trig == 4)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb4)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb4}{answerText}";
+                currentQuestion.CorrectAnswerb4 = currentQuestion.CorrectAnswerb4;
+            }
+            if (trig == 5)
+            {
+                string answerText = "";
+                foreach (var answer in currentQuestion.Answersb5)
+                {
+                    answerText += $"{answer}\n";
+                }
+                text.Text = $"{currentQuestion.Questionb5}{answerText}";
+                currentQuestion.CorrectAnswerb5 = currentQuestion.CorrectAnswerb5;
             }
         }
 
@@ -89,12 +129,12 @@ namespace Battle_of_the_Professor
 
             if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
-                text.Text = currentQuestion.WrongAnswerReply;
+                TextAnswers.Text = currentQuestion.WrongAnswerReply;
                 _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
-                text.Text = currentQuestion.CorrectAnswerReply;
+                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
                 _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
             currentQuestion.IsTriggered = true;
@@ -108,12 +148,12 @@ namespace Battle_of_the_Professor
 
             if (currentQuestion?.CorrectAnswer != 1)
             {
-                text.Text = currentQuestion.WrongAnswerReply;
+                TextAnswers.Text = currentQuestion.WrongAnswerReply;
                 _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
-                text.Text = currentQuestion.CorrectAnswerReply;
+                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
                 _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
@@ -129,12 +169,12 @@ namespace Battle_of_the_Professor
 
             if (currentQuestion?.CorrectAnswer != 2)
             {
-                text.Text = currentQuestion.WrongAnswerReply;
+                TextAnswers.Text = currentQuestion.WrongAnswerReply;
                 _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
-                text.Text = currentQuestion.CorrectAnswerReply;
+                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
                 _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
@@ -150,12 +190,12 @@ namespace Battle_of_the_Professor
 
             if (currentQuestion?.CorrectAnswer != 3)
             {
-                text.Text = currentQuestion.WrongAnswerReply;
+                TextAnswers.Text = currentQuestion.WrongAnswerReply;
                 _player.Health = _player.Health - currentQuestion.Penalty;
             }
             else
             {
-                text.Text = currentQuestion.CorrectAnswerReply;
+                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
                 _player.Intellect = _player.Intellect + currentQuestion.Gain;
             }
 
@@ -180,7 +220,8 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "You can't move that way!";
             }
-
+            classroom.Source = null;
+            TextAnswers.Text = null;
             SetEvent(state.Map.Row, state.Map.Col);
             state.Save(_player);
         }
@@ -197,7 +238,8 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "You can't move that way!";
             }
-
+            classroom.Source = null;
+            TextAnswers.Text = null;
             SetEvent(state.Map.Row, state.Map.Col);
             state.Save(_player);
         }
@@ -216,7 +258,8 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "You can't move that way!";
             }
-
+            classroom.Source = null;
+            TextAnswers.Text = null;
             SetEvent(state.Map.Row, state.Map.Col);
             state.Save(_player);
         }
@@ -235,7 +278,8 @@ namespace Battle_of_the_Professor
             {
                 text.Text = "You can't move that way!";
             }
-
+            classroom.Source = null;
+            TextAnswers.Text = null;
             SetEvent(state.Map.Row, state.Map.Col);
             state.Save(_player);
         }
@@ -245,7 +289,7 @@ namespace Battle_of_the_Professor
 
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Start());
         }

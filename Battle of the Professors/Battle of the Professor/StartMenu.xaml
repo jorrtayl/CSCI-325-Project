@@ -50,7 +50,7 @@
         <TextBox x:Name="TextAnswers" Grid.Column="1" HorizontalAlignment="Left" Height="47" Margin="502.667,43.011,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" TextChanged="TextAnswers_TextChanged" Grid.Row="1"/>
         <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="1" Margin="57.667,99.011,0,0" RenderTransformOrigin="0.093,-2.573" Grid.Row="1"/>
         <Button Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnExit" Content="EXIT" HorizontalAlignment="Left" Margin="10,99.011,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="btnExit_Click" Grid.Row="1"/>
+        <Button x:Name="BtnExit" Content="EXIT" HorizontalAlignment="Left" Margin="10,99.011,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Click="BtnExit_Click" Grid.Row="1"/>
         <Image x:Name="classroom" HorizontalAlignment="Center" Height="407" VerticalAlignment="Center" Width="725" Margin="71,-103,107.333,14" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
