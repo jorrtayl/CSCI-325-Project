@@ -30,7 +30,7 @@ namespace Battle_of_the_Professor
             }
 
             Character player = state.Load(new Deprived(txtNewSaveEntry.Text));
-            Character professor = new Professor(100, 10);
+            Character professor = new Professor(100, 15);
 
             if (player != null)
             {

@@ -39,7 +39,7 @@ namespace Battle_of_the_Professor
             UpdateTiles();
 
             state.UpdateStats(_player);
-            state.UpdateStats(_professor);
+            //state.UpdateStats(_professor);
         }
 
         private void UpdateTiles()
@@ -76,6 +76,7 @@ namespace Battle_of_the_Professor
         }
         private void BossEvent(int trig)
         {
+
             if(trig == 1) {
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answersb1)
@@ -83,7 +84,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb1}{answerText}";
-                currentQuestion.CorrectAnswerb1 = currentQuestion.CorrectAnswerb1;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb1;
             }
             if (trig == 2)
             {
@@ -93,7 +94,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb2}{answerText}";
-                currentQuestion.CorrectAnswerb2 = currentQuestion.CorrectAnswerb2;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb2;
             }
             if (trig == 3)
             {
@@ -103,7 +104,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb3}{answerText}";
-                currentQuestion.CorrectAnswerb3 = currentQuestion.CorrectAnswerb3;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb3;
             }
             if (trig == 4)
             {
@@ -113,7 +114,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb4}{answerText}";
-                currentQuestion.CorrectAnswerb4 = currentQuestion.CorrectAnswerb4;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb4;
             }
             if (trig == 5)
             {
@@ -123,7 +124,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb5}{answerText}";
-                currentQuestion.CorrectAnswerb5 = currentQuestion.CorrectAnswerb5;
+                currentQuestion.StringAnswers = currentQuestion.StringAnswersb1;
             }
             if (trig == 6)
             {
@@ -133,7 +134,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb6}{answerText}";
-                currentQuestion.CorrectAnswerb6 = currentQuestion.CorrectAnswerb6;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb6;
             }
             if (trig == 7)
             {
@@ -143,7 +144,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb7}{answerText}";
-                currentQuestion.CorrectAnswerb7 = currentQuestion.CorrectAnswerb7;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb7;
             }
             if (trig == 8)
             {
@@ -153,7 +154,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb8}{answerText}";
-                currentQuestion.CorrectAnswerb8 = currentQuestion.CorrectAnswerb8;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb8;
             }
             if (trig == 9)
             {
@@ -163,7 +164,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb9}{answerText}";
-                currentQuestion.CorrectAnswerb9 = currentQuestion.CorrectAnswerb9;
+                currentQuestion.StringAnswers = currentQuestion.StringAnswersb2;
             }
             if (trig == 10)
             {
@@ -173,7 +174,7 @@ namespace Battle_of_the_Professor
                     answerText += $"{answer}\n";
                 }
                 text.Text = $"{currentQuestion.Questionb10}{answerText}";
-                currentQuestion.CorrectAnswerb10 = currentQuestion.CorrectAnswerb10;
+                currentQuestion.CorrectAnswer = currentQuestion.CorrectAnswerb10;
             }
         }
 
@@ -193,7 +194,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= (10 + _player.Intellect); }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { _professor.Health -= (10 + _player.Intellect); TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; }
             }
             else if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
@@ -242,7 +243,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { _professor.Health -= (10 + _player.Intellect); TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; }
             }
             else if (currentQuestion?.CorrectAnswer != 1)
             {
@@ -290,7 +291,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { _professor.Health -= (10 + _player.Intellect); TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; }
             }
             else if (currentQuestion?.CorrectAnswer != 2)
             {
@@ -338,7 +339,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { _professor.Health -= (10 + _player.Intellect); TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health;}
             }
             else if (currentQuestion?.CorrectAnswer != 3)
             {

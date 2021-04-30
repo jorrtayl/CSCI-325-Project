@@ -2,7 +2,7 @@
 {
      public class Professor : Character
     {
-        public Professor() : base(100, 10)
+        public Professor() : base(100, 15)
         {
 
         }
