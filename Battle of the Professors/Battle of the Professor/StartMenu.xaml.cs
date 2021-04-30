@@ -219,11 +219,16 @@ namespace Battle_of_the_Professor
             }
             if (_player.IsDead)
             {
-                MessageBox.Show("You Lost! File deleted.");
+                MessageBox.Show("You Lost! You failed the class. Your progress has been deleted but feel free to try again.");
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
             }
-
+            else if (_professor.BossDead)
+            {
+                MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
             currentQuestion.IsTriggered = true;
             if(currentQuestion.TriggerLocation == (7, 18)){ BossEvent(trig); trig++; return; }
             currentQuestion = null;
@@ -268,6 +273,12 @@ namespace Battle_of_the_Professor
             if (_player.IsDead)
             {
                 MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
+            else if (_professor.BossDead)
+            {
+                MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
             }
@@ -317,6 +328,12 @@ namespace Battle_of_the_Professor
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
             }
+            else if (_professor.BossDead)
+            {
+                MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
             currentQuestion.IsTriggered = true;
             if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
@@ -360,6 +377,12 @@ namespace Battle_of_the_Professor
             if (_player.IsDead)
             {
                 MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
+            else if (_professor.BossDead)
+            {
+                MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
             }

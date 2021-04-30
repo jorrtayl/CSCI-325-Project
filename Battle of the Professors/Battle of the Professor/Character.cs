@@ -12,6 +12,7 @@ namespace Battle_of_the_Professor
         public int Intellect { get => _intellect; set { _intellect = value; Notify(); } }
         public string Name { get; set; }
         public bool IsDead { get => _health < 70; }
+        public bool BossDead { get => Health <= 0; }
 
         public Character(string name, int health, int sanity, int intellect)
         {
