@@ -41,26 +41,9 @@
             };
 
         //these will check if the spaces are moveable and return true if they are
-        public bool RightCheck(int Row, int Col)
-        {
-            if (map[Row, Col + 1] == 0) { return true; }
-            else return false;
-        }
-        public bool LeftCheck(int Row, int Col)
-        {
-            if (map[Row, Col - 1] == 0) { return true; }
-            else return false;
-        }
-        public bool UpCheck(int Row, int Col)
-        {
-            if (map[Row - 1, Col] == 0) { return true; }
-            else return false;
-        }
-        public bool DownCheck(int Row, int Col)
-        {
-            if (map[Row + 1, Col] == 0) { return true; }
-            else return false;
-        }
-
+        public bool RightCheck => map[Row, Col + 1] == 0 ? true : false;
+        public bool LeftCheck => map[Row, Col - 1] == 0 ? true : false;
+        public bool UpCheck => map[Row - 1, Col] == 0 ? true : false;
+        public bool DownCheck => map[Row + 1, Col] == 0 ? true : false;
     }
 }

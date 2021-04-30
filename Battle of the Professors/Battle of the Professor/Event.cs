@@ -1,55 +1,26 @@
-﻿namespace Battle_of_the_Professor
+﻿using System.Linq;
+
+namespace Battle_of_the_Professor
 {
     public class Event
     {
         public string[] Answers { get; set; } // A list of possible answers for the question
-        public string StringAnswers { get; set; } //test for answers based on user input
-        public int CorrectAnswer { get; set; } // The correct answer for this question
-        public int Penalty { get; set; }
-        public int Gain { get; set; }
-        public int trig1, trig2, trig3, trig4 = 0;
-        public string CorrectInt { get => $"Right Answer!\nYou have gained {Gain} intellect!"; }
-        public string CorrectSanity { get => $"Right Answer!\nYou have gained {Gain} Sanity!"; }
-        public string Rightboss { get => $"Argh can't believe you got that one right!\n Boss lost health!"; }
-        public string WrongInt { get => $"Wrong Answer!\nYou have lost {Penalty} Int, and 5 health!"; }
-        public string WrongSanity { get => $"Wrong Answer!\nYou have lost {Penalty} Sanity, and 5 health!"; }
-        public string Wrongboss { get => $"Ooh so close but nope!\n You lost health!"; }
+        public string CorrectAnswer { get; set; } // The correct answer for this question
+        public Affect[] Penalty { get; set; }
+        public Affect[] Gain { get; set; }
+        public string CorrectReply => IsBossQuestion ?
+                                        "Argh can't believe you got that one right!\n Boss lost health!" :
+                                        $"Right Answer!\nYou have gained {string.Join(", ", Gain.Select(a => $"{a.Amount} {a.AffectType}"))}!";
+        public string WrongReply => IsBossQuestion ?
+                                        "Ooh so close but nope!\n You lost health!" :
+                                        $"Wrong Answer!\nYou have lost {string.Join(", ", Gain.Select(a => $"{a.Amount} {a.AffectType}"))}!";
         public string Question { get; set; } // Asks the player a question
-        public bool IsTriggered { get; set; } // Triggers the event to ask the question if the player steps on the TriggerLocation
+
+        public bool IsBossQuestion { get; set; } = false;
+        public bool IsTriggered { get; set; } = false; // Triggers the event to ask the question if the player steps on the TriggerLocation
         public (int Row, int Col) TriggerLocation { get; set; } // Triggers once the player's row and col matches
         public bool ShouldTrigger(int row, int col) => (TriggerLocation.Row == row && TriggerLocation.Col == col) && !IsTriggered; // Checks if it should trigger or not
-        // this is test stuff, may not be used
-        public string Questionb1 { get; set; }
-        public string Questionb2 { get; set; }
-        public string Questionb3 { get; set; }
-        public string Questionb4 { get; set; }
-        public string Questionb5 { get; set; }
-        public string Questionb6 { get; set; }
-        public string Questionb7 { get; set; }
-        public string Questionb8 { get; set; }
-        public string Questionb9 { get; set; }
-        public string Questionb10 { get; set; }
-        public string[] Answersb1 { get; set; }
-        public string[] Answersb2 { get; set; }
-        public string[] Answersb3 { get; set; }
-        public string[] Answersb4 { get; set; }
-        public string[] Answersb5 { get; set; }
-        public string[] Answersb6 { get; set; }
-        public string[] Answersb7 { get; set; }
-        public string[] Answersb8 { get; set; }
-        public string[] Answersb9 { get; set; }
-        public string[] Answersb10 { get; set; }
-        public string StringAnswersb1 { get; set; }
-        public string StringAnswersb2 { get; set; }
-        public int CorrectAnswerb1 { get; set; }
-        public int CorrectAnswerb2 { get; set; }
-        public int CorrectAnswerb3 { get; set; }
-        public int CorrectAnswerb4 { get; set; }
-        public int CorrectAnswerb5 { get; set; }
-        public int CorrectAnswerb6 { get; set; }
-        public int CorrectAnswerb7 { get; set; }
-        public int CorrectAnswerb8 { get; set; }
-        public int CorrectAnswerb9 { get; set; }
-        public int CorrectAnswerb10 { get; set; }
+        // Handle different cases, etc. Hello vs hello
+        public bool IsCorrect(string answer) => answer.ToUpper() == CorrectAnswer.ToUpper();
     }
 }

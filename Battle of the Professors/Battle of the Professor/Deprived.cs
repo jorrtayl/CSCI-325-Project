@@ -2,7 +2,7 @@
 {
     public class Deprived : Character
     {
-        public Deprived(string name) : base(name, 100, 10, 10)
+        public Deprived(string name) : base(name, 100, 5, 5)
         {
 
         }

@@ -23,14 +23,16 @@ namespace Battle_of_the_Professor
             {
                 return;
             }
+
             Character player = state.Load(new Deprived(txtLoadEntry.Text));
-            Character professor = new Professor();
 
             if (player == null)
             {
                 MessageBox.Show("Invald Entry");
                 return;
             }
+
+            var professor = state.LoadBoss(player);
 
             NavigationService.Navigate(new StartMenu(player, professor));
         }

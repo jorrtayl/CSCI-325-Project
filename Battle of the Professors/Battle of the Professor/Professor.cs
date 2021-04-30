@@ -2,14 +2,14 @@
 {
      public class Professor : Character
     {
-        public Professor() : base(100, 10)
+        public override bool IsDead { get => Health <= 0; }
+
+        public Professor() : base("Dr. Ericson", 100, 1, 15)
         {
 
         }
-        public Professor(int health, int intellect) : base(health, intellect)
-        {
 
-        }
+        public Professor(int health, int sanity, int intellect) : base("Dr.Ericson", health, sanity, intellect) { }
         public override void Notify()
         {
 

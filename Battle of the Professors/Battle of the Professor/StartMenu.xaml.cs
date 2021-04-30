@@ -18,9 +18,7 @@ namespace Battle_of_the_Professor
         IGameState state = GameState.Instance;
         Event currentQuestion;
         Character _player;
-        Character _professor;
-        
-        int trig = 1;
+        Character _professor = new Professor();
 
         public StartMenu(Character player, Character professor)
         {
@@ -39,7 +37,6 @@ namespace Battle_of_the_Professor
             UpdateTiles();
 
             state.UpdateStats(_player);
-            state.UpdateStats(_professor);
         }
 
         private void UpdateTiles()
@@ -54,402 +51,238 @@ namespace Battle_of_the_Professor
             BottomRight.Source = GetImage(state.Map.BottomRight());
         }
 
+        private void ApplyAffects(bool isCorrect, bool isBoss)
+        {
+            if (isBoss && isCorrect)
+            {
+                _professor.Health -= _player.Sanity + _player.Intellect;
+            }
+
+            if (isBoss && !isCorrect)
+            {
+                _player.Health -= _professor.Intellect - _player.Sanity;
+                return;
+            }
+
+            Affect[] affects = isCorrect ? currentQuestion.Gain : currentQuestion.Penalty;
+
+            if (affects == null) return;
+
+            foreach (var affect in affects)
+            {
+                if (affect.AffectType == Stat.Health)
+                    _player.Health += affect.Amount;
+
+                if (affect.AffectType == Stat.Intellect)
+                    _player.Intellect += affect.Amount;
+
+                if (affect.AffectType == Stat.Sanity)
+                    _player.Sanity += affect.Amount;
+            }
+        }
+
         private void Dialogue_Click(object sender, RoutedEventArgs e)
         {
             BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
             binding.UpdateSource();
         }
 
-        private void SetEvent(int row, int col)
+        private void SetEvent()
         {
-            currentQuestion = state.Events.FirstOrDefault(ev => ev.ShouldTrigger(row, col));
+            if (_player.IsDead)
+            {
+                MessageBox.Show("You Lost! You failed the class. Your progress has been deleted but feel free to try again.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
+
+            if (_professor.IsDead)
+            {
+                MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
+
+            TextAnswer.Text = null;
+
+            currentQuestion = state.Questions.FirstOrDefault(ev => ev.ShouldTrigger(state.Map.Row, state.Map.Col));
             if (currentQuestion != null)
             {
-                classroom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "\\Map\\classroom.jfif", UriKind.Absolute));
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answers)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Question}{answerText}";
-            }
-        }
-        private void BossEvent(int trig)
-        {
-            if(trig == 1) {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb1)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb1}{answerText}";
-                currentQuestion.CorrectAnswerb1 = currentQuestion.CorrectAnswerb1;
-            }
-            if (trig == 2)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb2)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb2}{answerText}";
-                currentQuestion.CorrectAnswerb2 = currentQuestion.CorrectAnswerb2;
-            }
-            if (trig == 3)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb3)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb3}{answerText}";
-                currentQuestion.CorrectAnswerb3 = currentQuestion.CorrectAnswerb3;
-            }
-            if (trig == 4)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb4)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb4}{answerText}";
-                currentQuestion.CorrectAnswerb4 = currentQuestion.CorrectAnswerb4;
-            }
-            if (trig == 5)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb5)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb5}{answerText}";
-                currentQuestion.CorrectAnswerb5 = currentQuestion.CorrectAnswerb5;
-            }
-            if (trig == 6)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb6)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb6}{answerText}";
-                currentQuestion.CorrectAnswerb6 = currentQuestion.CorrectAnswerb6;
-            }
-            if (trig == 7)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb7)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb7}{answerText}";
-                currentQuestion.CorrectAnswerb7 = currentQuestion.CorrectAnswerb7;
-            }
-            if (trig == 8)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb8)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb8}{answerText}";
-                currentQuestion.CorrectAnswerb8 = currentQuestion.CorrectAnswerb8;
-            }
-            if (trig == 9)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb9)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb9}{answerText}";
-                currentQuestion.CorrectAnswerb9 = currentQuestion.CorrectAnswerb9;
-            }
-            if (trig == 10)
-            {
-                string answerText = "";
-                foreach (var answer in currentQuestion.Answersb10)
-                {
-                    answerText += $"{answer}\n";
-                }
-                text.Text = $"{currentQuestion.Questionb10}{answerText}";
-                currentQuestion.CorrectAnswerb10 = currentQuestion.CorrectAnswerb10;
-            }
-        }
+                classroom.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"\Map\classroom.jfif", UriKind.Absolute));
+                text.Text = $"{currentQuestion.Question}{string.Join("\n", currentQuestion.Answers)}";
 
-        private void TextChecker_Click(object sender, RoutedEventArgs e)
+                if (currentQuestion.Answers.Length == 1)
+                {
+                    Answer1.IsEnabled = false;
+                    Answer2.IsEnabled = false;
+                    Answer3.IsEnabled = false;
+
+                    CheckAnswer.IsEnabled = true;
+                    TextAnswer.IsEnabled = true;
+
+                    return;
+                }
+                else
+                {
+                    Answer1.IsEnabled = true;
+                    Answer2.IsEnabled = true;
+                    Answer3.IsEnabled = true;
+
+                    CheckAnswer.IsEnabled = false;
+                    TextAnswer.IsEnabled = false;
+
+                    return;
+                }
+            }
+
+            classroom.Source = null;
+            Answer1.IsEnabled = false;
+            Answer2.IsEnabled = false;
+            Answer3.IsEnabled = false;
+
+            CheckAnswer.IsEnabled = false;
+            TextAnswer.IsEnabled = false;
+        }
+        private void CheckAnswer_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
 
-            if (currentQuestion?.StringAnswers == TextAnswers.Text)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectInt;
-                    _player.Intellect += currentQuestion.Gain;
-                }
-                else if(currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectSanity;
-                    _player.Sanity += currentQuestion.Penalty;
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= (10 + _player.Intellect); }
-            }
-            else if (currentQuestion?.StringAnswers != TextAnswers.Text)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.WrongInt;
-                    _player.Intellect -= currentQuestion.Gain;
-                    _player.Health -= 5;
-                    
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.WrongSanity;
-                    _player.Sanity -= currentQuestion.Penalty;
-                    _player.Health -= 5;
-                    
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= (15 - _player.Sanity);
-                   
-                    
-                }
-            }
-            if (_player.IsDead)
-            {
-                MessageBox.Show("You Lost! File deleted.");
-                state.Delete(_player);
-                NavigationService.Navigate(new Start());
-            }
+            var correct = currentQuestion.IsCorrect(TextAnswer.Text);
+            ApplyAffects(correct, currentQuestion.IsBossQuestion);
+
+            Dialogue.Text = correct ? currentQuestion.CorrectReply : currentQuestion.WrongReply;
+
+            if (currentQuestion.IsBossQuestion)
+                Dialogue.Text += $"\nBoss Health: {_professor.Health}";
 
             currentQuestion.IsTriggered = true;
-            if(currentQuestion.TriggerLocation == (7, 18)){ BossEvent(trig); trig++; return; }
-            currentQuestion = null;
-            classroom.Source = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion?.CorrectAnswer == 1)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectInt;
-                    _player.Intellect += currentQuestion.Gain;
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectSanity;
-                    _player.Sanity += currentQuestion.Penalty;
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
-            }
-            else if (currentQuestion?.CorrectAnswer != 1)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.WrongInt;
-                    _player.Intellect -= currentQuestion.Gain;
-                    _player.Health -= 5;
-                    
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.WrongSanity;
-                    _player.Sanity -= currentQuestion.Penalty;
-                    _player.Health -= 5;
-                   
-                }
-                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity;
-                    
-                }
-            }
-            if (_player.IsDead)
-            {
-                MessageBox.Show("You Lost! File deleted.");
-                state.Delete(_player);
-                NavigationService.Navigate(new Start());
-            }
+            if (currentQuestion == null) return;
+
+            var correct = currentQuestion.IsCorrect("1");
+            ApplyAffects(correct, currentQuestion.IsBossQuestion);
+
+            Dialogue.Text = correct ? currentQuestion.CorrectReply : currentQuestion.WrongReply;
+
+            if (currentQuestion.IsBossQuestion)
+                Dialogue.Text += $"\nBoss Health: {_professor.Health}";
+
             currentQuestion.IsTriggered = true;
-            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
-            currentQuestion = null;
-            classroom.Source = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void Answer2_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion?.CorrectAnswer == 2)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectInt;
-                    _player.Intellect += currentQuestion.Gain;
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectSanity;
-                    _player.Sanity += currentQuestion.Penalty;
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
-            }
-            else if (currentQuestion?.CorrectAnswer != 2)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.WrongInt;
-                    _player.Intellect -= currentQuestion.Gain;
-                    _player.Health -= 5;
-                    
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.WrongSanity;
-                    _player.Sanity -= currentQuestion.Penalty;
-                    _player.Health -= 5;
-                    
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
-            }
-            if (_player.IsDead)
-            {
-                MessageBox.Show("You Lost! File deleted.");
-                state.Delete(_player);
-                NavigationService.Navigate(new Start());
-            }
+            if (currentQuestion == null) return;
+
+            var correct = currentQuestion.IsCorrect("2");
+            ApplyAffects(correct, currentQuestion.IsBossQuestion);
+
+            Dialogue.Text = correct ? currentQuestion.CorrectReply : currentQuestion.WrongReply;
+
+            if (currentQuestion.IsBossQuestion)
+                Dialogue.Text += $"\nBoss Health: {_professor.Health}";
+
             currentQuestion.IsTriggered = true;
-            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
-            currentQuestion = null;
-            classroom.Source = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void Answer3_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
 
-            if (currentQuestion?.CorrectAnswer == 3)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectInt;
-                    _player.Intellect += currentQuestion.Gain;
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.CorrectSanity;
-                    _player.Sanity += currentQuestion.Penalty;
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
-            }
-            else if (currentQuestion?.CorrectAnswer != 3)
-            {
-                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
-                {
-                    TextAnswers.Text = currentQuestion.WrongInt;
-                    _player.Intellect -= currentQuestion.Gain;
-                    _player.Health -= 5;
-                }
-                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
-                {
-                    TextAnswers.Text = currentQuestion.WrongSanity;
-                    _player.Sanity -= currentQuestion.Penalty;
-                    _player.Health -= 5;
-                }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
-            }
-            if (_player.IsDead)
-            {
-                MessageBox.Show("You Lost! File deleted.");
-                state.Delete(_player);
-                NavigationService.Navigate(new Start());
-            }
+            var correct = currentQuestion.IsCorrect("3");
+            ApplyAffects(correct, currentQuestion.IsBossQuestion);
+
+            Dialogue.Text = correct ? currentQuestion.CorrectReply : currentQuestion.WrongReply;
+
+            if (currentQuestion.IsBossQuestion)
+                Dialogue.Text += $"\nBoss Health: {_professor.Health}";
+
             currentQuestion.IsTriggered = true;
-            if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
-            currentQuestion = null;
-            classroom.Source = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
         private void Right_Click(object sender, RoutedEventArgs e)
         {
-            if (state.Map.RightCheck(state.Map.Row, state.Map.Col) == true)
+            if (!state.Map.RightCheck)
             {
-                state.Map.Col = state.Map.Col + 1;
-
-                UpdateTiles();
-
-                text.Text = "You have moved right!";
+                Dialogue.Text = "You can't move that way!";
+                return;
             }
-            else
-            {
-                text.Text = "You can't move that way!";
-            }
-            classroom.Source = null;
-            TextAnswers.Text = null;
-            SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(_player);
+
+            state.Map.Col = state.Map.Col + 1;
+
+            UpdateTiles();
+
+            Dialogue.Text = "You have moved right!";
+
+            TextAnswer.Text = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void Up_Click(object sender, RoutedEventArgs e)
         {
-            if (state.Map.UpCheck(state.Map.Row, state.Map.Col) == true)
+            if (!state.Map.UpCheck)
             {
-                state.Map.Row = state.Map.Row - 1;
-                UpdateTiles();
-                text.Text = "You have moved up!";
+                Dialogue.Text = "You can't move that way!";
+                return;
             }
-            else
-            {
-                text.Text = "You can't move that way!";
-            }
-            classroom.Source = null;
-            TextAnswers.Text = null;
-            SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(_player);
+
+            state.Map.Row = state.Map.Row - 1;
+            UpdateTiles();
+            Dialogue.Text = "You have moved up!";
+
+            TextAnswer.Text = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void Left_Click(object sender, RoutedEventArgs e)
         {
-            if (state.Map.LeftCheck(state.Map.Row, state.Map.Col) == true)
+            if (!state.Map.LeftCheck)
             {
-                state.Map.Col = state.Map.Col - 1;
-
-                UpdateTiles();
-
-                text.Text = "You have moved left!";
+                Dialogue.Text = "You can't move that way!";
+                return;
             }
-            else
-            {
-                text.Text = "You can't move that way!";
-            }
-            classroom.Source = null;
-            TextAnswers.Text = null;
-            SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(_player);
+
+            state.Map.Col = state.Map.Col - 1;
+
+            UpdateTiles();
+
+            Dialogue.Text = "You have moved left!";
+
+            TextAnswer.Text = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void Down_Click(object sender, RoutedEventArgs e)
         {
-            if (state.Map.DownCheck(state.Map.Row, state.Map.Col) == true)
+            if (!state.Map.DownCheck)
             {
-                state.Map.Row = state.Map.Row + 1;
-
-                UpdateTiles();
-
-                text.Text = "You have moved down!";
+                Dialogue.Text = "You can't move that way!";
+                return;
             }
-            else
-            {
-                text.Text = "You can't move that way!";
-            }
-            classroom.Source = null;
-            TextAnswers.Text = null;
-            SetEvent(state.Map.Row, state.Map.Col);
-            state.Save(_player);
-        }
 
-        private void TextAnswers_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            state.Map.Row = state.Map.Row + 1;
 
+            UpdateTiles();
+
+            Dialogue.Text = "You have moved down!";
+
+            TextAnswer.Text = null;
+            SetEvent();
+            state.Save(_player, _professor);
         }
 
         private void BtnExit_Click(object sender, RoutedEventArgs e)
