@@ -11,6 +11,7 @@ namespace Battle_of_the_Professor
         public int Sanity { get => _sanity; set { _sanity = value; Notify(); } }
         public int Intellect { get => _intellect; set { _intellect = value; Notify(); } }
         public string Name { get; set; }
+        public bool IsDead { get => _health < 70; }
 
         public Character(string name, int health, int sanity, int intellect)
         {
@@ -19,7 +20,11 @@ namespace Battle_of_the_Professor
             _sanity = sanity;
             _intellect = intellect;
         }
-
+        public Character(int health, int intellect)
+        {
+            _health = health;
+            _intellect = intellect;
+        }
         public void Attach(IGameState observer)
         {
             _observers.Add(observer); // adds observer into the list of _observers

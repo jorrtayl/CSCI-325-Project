@@ -1,8 +1,12 @@
 ﻿namespace Battle_of_the_Professor
 {
-    class Professor : Character
+     public class Professor : Character
     {
-        public Professor() : base("Dr. Ericson", 100, 10, 15)
+        public Professor() : base(100, 10)
+        {
+
+        }
+        public Professor(int health, int intellect) : base(health, intellect)
         {
 
         }

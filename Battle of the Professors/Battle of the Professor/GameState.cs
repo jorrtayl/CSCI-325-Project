@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
 {
-    public sealed class GameState : IGameState
+    public sealed class GameState : Page, IGameState
     {
         private TextBox _stats;
 
@@ -224,6 +224,10 @@ namespace Battle_of_the_Professor
             Reset();
 
             return null;
+        }
+        public void Delete(Character player)
+        {
+            File.Delete($"{player.Name}.txt");
         }
 
         public void UpdateStats(Character player)

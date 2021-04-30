@@ -18,25 +18,28 @@ namespace Battle_of_the_Professor
         IGameState state = GameState.Instance;
         Event currentQuestion;
         Character _player;
-
-        Professor _professor;
+        Character _professor; //new Professor(100, 15);
+        
         int trig = 1;
 
-        public StartMenu(Character player)
+        public StartMenu(Character player, Character professor)
         {
             InitializeComponent();
 
             state.SetStats(Stats); // sets player stats in the TextBox
 
             _player = player;
+            _professor = professor;
 
             _player.Attach(state);
+            _professor.Attach(state);
 
             Middle.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"\Map\middle.PNG", UriKind.Absolute));
 
             UpdateTiles();
 
             state.UpdateStats(_player);
+            state.UpdateStats(_professor);
         }
 
         private void UpdateTiles()
@@ -190,7 +193,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= (10 + _player.Intellect); }
             }
             else if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
@@ -199,14 +202,25 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.WrongInt;
                     _player.Intellect -= currentQuestion.Gain;
                     _player.Health -= 5;
+                    
                 }
                 else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
                 {
                     TextAnswers.Text = currentQuestion.WrongSanity;
                     _player.Sanity -= currentQuestion.Penalty;
                     _player.Health -= 5;
+                    
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= (15 - _player.Sanity);
+                   
+                    
+                }
+            }
+            if (_player.IsDead)
+            {
+                MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
             }
 
             currentQuestion.IsTriggered = true;
@@ -237,16 +251,25 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.WrongInt;
                     _player.Intellect -= currentQuestion.Gain;
                     _player.Health -= 5;
+                    
                 }
                 else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
                 {
                     TextAnswers.Text = currentQuestion.WrongSanity;
                     _player.Sanity -= currentQuestion.Penalty;
                     _player.Health -= 5;
+                   
                 }
-                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
+                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity;
+                    
+                }
             }
-
+            if (_player.IsDead)
+            {
+                MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
             currentQuestion.IsTriggered = true;
             if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
@@ -276,16 +299,23 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.WrongInt;
                     _player.Intellect -= currentQuestion.Gain;
                     _player.Health -= 5;
+                    
                 }
                 else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
                 {
                     TextAnswers.Text = currentQuestion.WrongSanity;
                     _player.Sanity -= currentQuestion.Penalty;
                     _player.Health -= 5;
+                    
                 }
                 else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
-
+            if (_player.IsDead)
+            {
+                MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
             currentQuestion.IsTriggered = true;
             if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;
@@ -326,7 +356,12 @@ namespace Battle_of_the_Professor
                 }
                 else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
-
+            if (_player.IsDead)
+            {
+                MessageBox.Show("You Lost! File deleted.");
+                state.Delete(_player);
+                NavigationService.Navigate(new Start());
+            }
             currentQuestion.IsTriggered = true;
             if (currentQuestion.TriggerLocation == (7, 18)) { BossEvent(trig); trig++; return; }
             currentQuestion = null;

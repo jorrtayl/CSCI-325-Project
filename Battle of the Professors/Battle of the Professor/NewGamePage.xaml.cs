@@ -30,6 +30,7 @@ namespace Battle_of_the_Professor
             }
 
             Character player = state.Load(new Deprived(txtNewSaveEntry.Text));
+            Character professor = new Professor(100, 10);
 
             if (player != null)
             {
@@ -39,7 +40,7 @@ namespace Battle_of_the_Professor
             player = new Deprived(txtNewSaveEntry.Text);
             state.Save(player);
 
-            NavigationService.Navigate(new StartMenu(player));
+            NavigationService.Navigate(new StartMenu(player, professor));
         }
     }
 }
