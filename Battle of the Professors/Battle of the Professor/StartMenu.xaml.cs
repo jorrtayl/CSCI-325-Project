@@ -18,7 +18,7 @@ namespace Battle_of_the_Professor
         IGameState state = GameState.Instance;
         Event currentQuestion;
         Character _player;
-        Character _professor; //new Professor(100, 15);
+        Character _professor;
         
         int trig = 1;
 
@@ -193,7 +193,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= (10 + _player.Intellect); }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= (10 + _player.Intellect); }
             }
             else if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
@@ -242,7 +242,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
             }
             else if (currentQuestion?.CorrectAnswer != 1)
             {
@@ -290,7 +290,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
             }
             else if (currentQuestion?.CorrectAnswer != 2)
             {
@@ -338,7 +338,7 @@ namespace Battle_of_the_Professor
                     TextAnswers.Text = currentQuestion.CorrectSanity;
                     _player.Sanity += currentQuestion.Penalty;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss + "Boss's health: " + _professor.Health; _professor.Health -= 10 + _player.Intellect; }
             }
             else if (currentQuestion?.CorrectAnswer != 3)
             {

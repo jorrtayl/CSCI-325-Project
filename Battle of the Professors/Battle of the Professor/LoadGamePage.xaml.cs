@@ -24,6 +24,7 @@ namespace Battle_of_the_Professor
                 return;
             }
             Character player = state.Load(new Deprived(txtLoadEntry.Text));
+            Character professor = new Professor();
 
             if (player == null)
             {
@@ -31,7 +32,7 @@ namespace Battle_of_the_Professor
                 return;
             }
 
-            NavigationService.Navigate(new StartMenu(player));
+            NavigationService.Navigate(new StartMenu(player, professor));
         }
 
         private void btnBackToSelection_Click(object sender, RoutedEventArgs e)
