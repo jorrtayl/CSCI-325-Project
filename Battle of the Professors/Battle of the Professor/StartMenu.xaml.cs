@@ -266,7 +266,7 @@ namespace Battle_of_the_Professor
                     _player.Health -= 5;
                    
                 }
-                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity;
+                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= (15 - _player.Sanity);
                     
                 }
             }
@@ -320,7 +320,7 @@ namespace Battle_of_the_Professor
                     _player.Health -= 5;
                     
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= (15 - _player.Sanity); }
             }
             if (_player.IsDead)
             {
@@ -372,7 +372,7 @@ namespace Battle_of_the_Professor
                     _player.Sanity -= currentQuestion.Penalty;
                     _player.Health -= 5;
                 }
-                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= (15 - _player.Sanity); }
             }
             if (_player.IsDead)
             {
