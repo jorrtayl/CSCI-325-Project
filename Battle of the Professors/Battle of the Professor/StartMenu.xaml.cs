@@ -18,7 +18,8 @@ namespace Battle_of_the_Professor
         IGameState state = GameState.Instance;
         Event currentQuestion;
         Character _player;
-        //Professor _professor;
+
+        Professor _professor;
         int trig = 1;
 
         public StartMenu(Character player)
@@ -121,7 +122,7 @@ namespace Battle_of_the_Professor
                 text.Text = $"{currentQuestion.Questionb5}{answerText}";
                 currentQuestion.CorrectAnswerb5 = currentQuestion.CorrectAnswerb5;
             }
-            if (trig == 1)
+            if (trig == 6)
             {
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answersb6)
@@ -131,7 +132,7 @@ namespace Battle_of_the_Professor
                 text.Text = $"{currentQuestion.Questionb6}{answerText}";
                 currentQuestion.CorrectAnswerb6 = currentQuestion.CorrectAnswerb6;
             }
-            if (trig == 2)
+            if (trig == 7)
             {
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answersb7)
@@ -141,7 +142,7 @@ namespace Battle_of_the_Professor
                 text.Text = $"{currentQuestion.Questionb7}{answerText}";
                 currentQuestion.CorrectAnswerb7 = currentQuestion.CorrectAnswerb7;
             }
-            if (trig == 3)
+            if (trig == 8)
             {
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answersb8)
@@ -151,7 +152,7 @@ namespace Battle_of_the_Professor
                 text.Text = $"{currentQuestion.Questionb8}{answerText}";
                 currentQuestion.CorrectAnswerb8 = currentQuestion.CorrectAnswerb8;
             }
-            if (trig == 4)
+            if (trig == 9)
             {
                 string answerText = "";
                 foreach (var answer in currentQuestion.Answersb9)
@@ -177,16 +178,37 @@ namespace Battle_of_the_Professor
         {
             if (currentQuestion == null) return;
 
-            if (currentQuestion?.StringAnswers != TextAnswers.Text)
+            if (currentQuestion?.StringAnswers == TextAnswers.Text)
             {
-                TextAnswers.Text = currentQuestion.WrongAnswerReply;
-                _player.Health = _player.Health - currentQuestion.Penalty;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectInt;
+                    _player.Intellect += currentQuestion.Gain;
+                }
+                else if(currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectSanity;
+                    _player.Sanity += currentQuestion.Penalty;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
             }
-            else
+            else if (currentQuestion?.StringAnswers != TextAnswers.Text)
             {
-                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
-                _player.Intellect = _player.Intellect + currentQuestion.Gain;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.WrongInt;
+                    _player.Intellect -= currentQuestion.Gain;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.WrongSanity;
+                    _player.Sanity -= currentQuestion.Penalty;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
+
             currentQuestion.IsTriggered = true;
             if(currentQuestion.TriggerLocation == (7, 18)){ BossEvent(trig); trig++; return; }
             currentQuestion = null;
@@ -194,17 +216,35 @@ namespace Battle_of_the_Professor
         }
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion == null) return;
-
-            if (currentQuestion?.CorrectAnswer != 1)
+            if (currentQuestion?.CorrectAnswer == 1)
             {
-                TextAnswers.Text = currentQuestion.WrongAnswerReply;
-                _player.Health = _player.Health - currentQuestion.Penalty;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectInt;
+                    _player.Intellect += currentQuestion.Gain;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectSanity;
+                    _player.Sanity += currentQuestion.Penalty;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
             }
-            else
+            else if (currentQuestion?.CorrectAnswer != 1)
             {
-                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
-                _player.Intellect = _player.Intellect + currentQuestion.Gain;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.WrongInt;
+                    _player.Intellect -= currentQuestion.Gain;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.WrongSanity;
+                    _player.Sanity -= currentQuestion.Penalty;
+                    _player.Health -= 5;
+                }
+                else if(currentQuestion.TriggerLocation ==(7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
 
             currentQuestion.IsTriggered = true;
@@ -215,17 +255,35 @@ namespace Battle_of_the_Professor
 
         private void Answer2_Click(object sender, RoutedEventArgs e)
         {
-            if (currentQuestion == null) return;
-
-            if (currentQuestion?.CorrectAnswer != 2)
+            if (currentQuestion?.CorrectAnswer == 2)
             {
-                TextAnswers.Text = currentQuestion.WrongAnswerReply;
-                _player.Health = _player.Health - currentQuestion.Penalty;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectInt;
+                    _player.Intellect += currentQuestion.Gain;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectSanity;
+                    _player.Sanity += currentQuestion.Penalty;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
             }
-            else
+            else if (currentQuestion?.CorrectAnswer != 2)
             {
-                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
-                _player.Intellect = _player.Intellect + currentQuestion.Gain;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.WrongInt;
+                    _player.Intellect -= currentQuestion.Gain;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.WrongSanity;
+                    _player.Sanity -= currentQuestion.Penalty;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
 
             currentQuestion.IsTriggered = true;
@@ -238,15 +296,35 @@ namespace Battle_of_the_Professor
         {
             if (currentQuestion == null) return;
 
-            if (currentQuestion?.CorrectAnswer != 3)
+            if (currentQuestion?.CorrectAnswer == 3)
             {
-                TextAnswers.Text = currentQuestion.WrongAnswerReply;
-                _player.Health = _player.Health - currentQuestion.Penalty;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectInt;
+                    _player.Intellect += currentQuestion.Gain;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.CorrectSanity;
+                    _player.Sanity += currentQuestion.Penalty;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Rightboss; _professor.Health -= 10 + _player.Intellect; }
             }
-            else
+            else if (currentQuestion?.CorrectAnswer != 3)
             {
-                TextAnswers.Text = currentQuestion.CorrectAnswerReply;
-                _player.Intellect = _player.Intellect + currentQuestion.Gain;
+                if (currentQuestion.TriggerLocation == (1, 2) || currentQuestion.TriggerLocation == (7, 2) || currentQuestion.TriggerLocation == (9, 7) || currentQuestion.TriggerLocation == (7, 15) || currentQuestion.TriggerLocation == (10, 12))
+                {
+                    TextAnswers.Text = currentQuestion.WrongInt;
+                    _player.Intellect -= currentQuestion.Gain;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (13, 3) || currentQuestion.TriggerLocation == (1, 8) || currentQuestion.TriggerLocation == (7, 8) || currentQuestion.TriggerLocation == (13, 17) || currentQuestion.TriggerLocation == (1, 17))
+                {
+                    TextAnswers.Text = currentQuestion.WrongSanity;
+                    _player.Sanity -= currentQuestion.Penalty;
+                    _player.Health -= 5;
+                }
+                else if (currentQuestion.TriggerLocation == (7, 18)) { TextAnswers.Text = currentQuestion.Wrongboss; _player.Health -= 15 - _player.Sanity; }
             }
 
             currentQuestion.IsTriggered = true;

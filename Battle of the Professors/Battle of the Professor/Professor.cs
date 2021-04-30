@@ -2,7 +2,7 @@
 {
     class Professor : Character
     {
-        public Professor() : base("Dr. Ericson", 100, .40f, 10)
+        public Professor() : base("Dr. Ericson", 100, 10, 15)
         {
 
         }

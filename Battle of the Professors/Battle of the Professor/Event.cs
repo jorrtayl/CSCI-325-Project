@@ -8,8 +8,12 @@
         public int Penalty { get; set; }
         public int Gain { get; set; }
         public int trig1, trig2, trig3, trig4 = 0;
-        public string CorrectAnswerReply { get => $"Right Answer!\nYou have gained {Gain} intellect!"; }
-        public string WrongAnswerReply { get => $"Wrong Answer!\nYou have lost {Penalty} health!"; }
+        public string CorrectInt { get => $"Right Answer!\nYou have gained {Gain} intellect!"; }
+        public string CorrectSanity { get => $"Right Answer!\nYou have gained {Gain} Sanity!"; }
+        public string Rightboss { get => $"Argh can't believe you got that one right!\n Boss lost health!"; }
+        public string WrongInt { get => $"Wrong Answer!\nYou have lost {Penalty} Int, and 5 health!"; }
+        public string WrongSanity { get => $"Wrong Answer!\nYou have lost {Penalty} Sanity, and 5 health!"; }
+        public string Wrongboss { get => $"Ooh so close but nope!\n You lost health!"; }
         public string Question { get; set; } // Asks the player a question
         public bool IsTriggered { get; set; } // Triggers the event to ask the question if the player steps on the TriggerLocation
         public (int Row, int Col) TriggerLocation { get; set; } // Triggers once the player's row and col matches
@@ -35,6 +39,8 @@
         public string[] Answersb8 { get; set; }
         public string[] Answersb9 { get; set; }
         public string[] Answersb10 { get; set; }
+        public string StringAnswersb1 { get; set; }
+        public string StringAnswersb2 { get; set; }
         public int CorrectAnswerb1 { get; set; }
         public int CorrectAnswerb2 { get; set; }
         public int CorrectAnswerb3 { get; set; }
