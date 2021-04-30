@@ -5,13 +5,14 @@ using System.Windows.Controls;
 
 namespace Battle_of_the_Professor
 {
+    // game mechanics.
     public sealed class GameState : Page, IGameState
     {
         private TextBox _stats;
 
         public Event[] Questions { get; private set; }
 
-        public Map Map { get; set; } // every time you have a public variable do a getter and setter. Also, try not to name it the same as the class.
+        public Map Map { get; set; }
 
         // Singleton Implementation
         private static readonly IGameState _instance = new GameState();
@@ -30,10 +31,10 @@ namespace Battle_of_the_Professor
             {
                 new Event() //1
                 {
-                    Question = "Pop Quiz Time!\nwhat is the purpose of 'for' in programming?\nChoose your answer wisely\n",
+                    Question = "Pop Quiz Time!\nWhat is the purpose of 'for' in programming?\nChoose your answer wisely\n",
                     Answers = new []{ "1. A loop of the number 4", "2. A loop that does an action a cerain amount of times", "3. I think I am in the wrong class" },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
-                    Gain = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
+                    Gain = new[] { new Affect(1, Stat.Intellect) },
                     CorrectAnswer = "2",
                     TriggerLocation = (1, 2)
                 },
@@ -41,16 +42,16 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nWhich of the following can be used to define the member of a class externally?\nChoose your answer wisely\n",
                     Answers = new []{ "1. :", "2. ::", "3. #" },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "2",
-                    TriggerLocation = (13, 3)
+                    TriggerLocation = (13, 5)
                 },
                 new Event() //3
                 {
                     Question = "Pop Quiz Time!\nWhich of these is a part that makes a computer run faster?\nChoose your answer wisely\n",
                     Answers = new []{ "1. Using an SSD", "2. RGB Everything!", "3. Yelling and Hitting it" },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "1",
                     TriggerLocation = (7, 2)
@@ -59,7 +60,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nWhat method is used to print text to the screen in C#?\nChoose your answer wisely\n",
                     Answers = new []{ "1. cout <<", "2. printf ", "3. Console.WriteLine " },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "3",
                     TriggerLocation = (1, 8)
@@ -68,7 +69,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nOf the following, what statement is only triggered if requirements are met?\nChoose your answer wisely\n",
                     Answers = new []{ "1. if ", "2. for ", "3. Console.WriteLine " },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "1",
                     TriggerLocation = (7, 8)
@@ -77,7 +78,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nWhat computer language are we using in this class?\n",
                     Answers = new []{ "Please enter answer to the right and click check." },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "C#",
                     TriggerLocation = (9, 7)
@@ -86,7 +87,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nDBC stands for?\n",
                     Answers = new []{ "1. Design By Contract", "2. Digital Bond Consulting", "3. Design by Basic Contracts" },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "1",
                     TriggerLocation = (13, 17)
@@ -95,7 +96,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nWhich of the below is not a structural pattern?\n",
                     Answers = new []{ "1. Composite", "2. Decorator", "3. Abstract Factory" },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "3",
                     TriggerLocation = (7, 15)
@@ -104,7 +105,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nThe ____ keyword in C# means that only a portion of a class is defined in a given file.?\n",
                     Answers = new []{ "Please enter answer to the right and click check." },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "Abstract",
 
@@ -114,7 +115,7 @@ namespace Battle_of_the_Professor
                 {
                     Question = "Pop Quiz Time!\nThe Factory pattern is an ____ type of design pattern?\n",
                     Answers = new []{ "Please enter answer to the right and click check." },
-                    Penalty = new[] { new Affect(1, Stat.Health) },
+                    Penalty = new[] { new Affect(-1, Stat.Health), new Affect(-1, Stat.Intellect) },
                     Gain = new[] { new Affect(1, Stat.Health) },
                     CorrectAnswer = "Creational",
 
@@ -133,7 +134,7 @@ namespace Battle_of_the_Professor
                 },
                 new Event()
                 {
-                     Question = "Ready for the first question? Too bad here it comes!\nAn ____ is a set of all signatures?\n",
+                    Question = "Ready for the first question? Too bad here it comes!\nAn ____ is a set of all signatures?\n",
                     Answers = new[]{"Please enter answer to the righta and click check."},
                     Penalty = new[] { new Affect(1, Stat.Health) },
                     Gain = new[] { new Affect(1, Stat.Health) },
@@ -234,11 +235,13 @@ namespace Battle_of_the_Professor
             };
         }
 
+        // sets the TextBox that we want to show stats in.
         public void SetStats(TextBox stats)
         {
             _stats = stats;
         }
 
+        // saves the player and professor stats to a text file.
         public void Save(Character player, Character boss = null)
         {
             if (boss == null) boss = new Professor();
@@ -267,6 +270,7 @@ namespace Battle_of_the_Professor
             File.WriteAllLines($"{player.Name}.txt", stringLines); // writes all of these values to the text file.
         }
 
+        // loads the player stats from the text file.
         public Character Load(Character player = null) // optional parameter
         {
             if (player != null && File.Exists($"{player.Name}.txt"))
@@ -295,6 +299,8 @@ namespace Battle_of_the_Professor
 
             return null;
         }
+
+        // loads the professor stats from the text file.
         public Character LoadBoss(Character player) // optional parameter
         {
             int health, sanity, intellect;
@@ -309,11 +315,14 @@ namespace Battle_of_the_Professor
 
             return new Professor(health, sanity, intellect);
         }
+
+        // deletes player file.
         public void Delete(Character player)
         {
             File.Delete($"{player.Name}.txt");
         }
 
+        // places the current stats to the TextBox for the player to see.
         public void UpdateStats(Character player)
         {
             _stats.Text = $"Health: {player.Health}\nSanity: {player.Sanity}\nIntellect: {player.Intellect}";

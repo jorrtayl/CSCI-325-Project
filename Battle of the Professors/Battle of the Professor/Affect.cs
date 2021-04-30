@@ -1,5 +1,6 @@
 ﻿namespace Battle_of_the_Professor
 {
+    // modifies the stat changes for the events in GameState.
     public class Affect
     {
         public int Amount { get; set; }
@@ -13,6 +14,7 @@
         }
     }
 
+    // only used in this class.
     public enum Stat
     {
         Health,

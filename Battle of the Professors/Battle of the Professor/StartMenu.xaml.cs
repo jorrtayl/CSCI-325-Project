@@ -9,8 +9,9 @@ using System.Windows.Navigation;
 namespace Battle_of_the_Professor
 {
     /// <summary>
-    /// Interaction logic for StartMenu.xaml
+    /// Interaction logic for StartMain.xaml
     /// </summary>
+    // main driver for the game.
     public partial class StartMenu : Page
     {
         BitmapImage GetImage(string location) => new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + location, UriKind.Absolute));
@@ -39,6 +40,7 @@ namespace Battle_of_the_Professor
             state.UpdateStats(_player);
         }
 
+        // character movement
         private void UpdateTiles()
         {
             Top.Source = GetImage(state.Map.Top());
@@ -51,6 +53,7 @@ namespace Battle_of_the_Professor
             BottomRight.Source = GetImage(state.Map.BottomRight());
         }
 
+        // modifies stat changes based on if the question is right or wrong.
         private void ApplyAffects(bool isCorrect, bool isBoss)
         {
             if (isBoss && isCorrect)
@@ -81,12 +84,7 @@ namespace Battle_of_the_Professor
             }
         }
 
-        private void Dialogue_Click(object sender, RoutedEventArgs e)
-        {
-            BindingExpression binding = text.GetBindingExpression(TextBox.TextProperty);
-            binding.UpdateSource();
-        }
-
+        // checks if the player or professor is dead and sets the next event that has not been trigger that needs to be.
         private void SetEvent()
         {
             if (_player.IsDead)
@@ -94,6 +92,7 @@ namespace Battle_of_the_Professor
                 MessageBox.Show("You Lost! You failed the class. Your progress has been deleted but feel free to try again.");
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
+                return;
             }
 
             if (_professor.IsDead)
@@ -101,6 +100,7 @@ namespace Battle_of_the_Professor
                 MessageBox.Show("You Won! You completed the class. You progress has been deleted but feel free to try again.");
                 state.Delete(_player);
                 NavigationService.Navigate(new Start());
+                return;
             }
 
             TextAnswer.Text = null;
@@ -136,6 +136,7 @@ namespace Battle_of_the_Professor
             }
 
             classroom.Source = null;
+            text.Text = null;
             Answer1.IsEnabled = false;
             Answer2.IsEnabled = false;
             Answer3.IsEnabled = false;
@@ -143,6 +144,8 @@ namespace Battle_of_the_Professor
             CheckAnswer.IsEnabled = false;
             TextAnswer.IsEnabled = false;
         }
+
+        // checks to see if the entered answer is correct.
         private void CheckAnswer_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
@@ -156,9 +159,11 @@ namespace Battle_of_the_Professor
                 Dialogue.Text += $"\nBoss Health: {_professor.Health}";
 
             currentQuestion.IsTriggered = true;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
+
+        // first answer choice when asked a question.
         private void Answer1_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
@@ -172,10 +177,11 @@ namespace Battle_of_the_Professor
                 Dialogue.Text += $"\nBoss Health: {_professor.Health}";
 
             currentQuestion.IsTriggered = true;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
+        // second answer choice when asked a question.
         private void Answer2_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
@@ -189,10 +195,11 @@ namespace Battle_of_the_Professor
                 Dialogue.Text += $"\nBoss Health: {_professor.Health}";
 
             currentQuestion.IsTriggered = true;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
+        // third answer choice when asked a question.
         private void Answer3_Click(object sender, RoutedEventArgs e)
         {
             if (currentQuestion == null) return;
@@ -206,8 +213,8 @@ namespace Battle_of_the_Professor
                 Dialogue.Text += $"\nBoss Health: {_professor.Health}";
 
             currentQuestion.IsTriggered = true;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
         // these are the button presses, which perform checks and change the pictures accordingly
@@ -226,8 +233,8 @@ namespace Battle_of_the_Professor
             Dialogue.Text = "You have moved right!";
 
             TextAnswer.Text = null;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
         private void Up_Click(object sender, RoutedEventArgs e)
@@ -243,8 +250,8 @@ namespace Battle_of_the_Professor
             Dialogue.Text = "You have moved up!";
 
             TextAnswer.Text = null;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
         private void Left_Click(object sender, RoutedEventArgs e)
@@ -262,8 +269,8 @@ namespace Battle_of_the_Professor
             Dialogue.Text = "You have moved left!";
 
             TextAnswer.Text = null;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
         private void Down_Click(object sender, RoutedEventArgs e)
@@ -281,10 +288,11 @@ namespace Battle_of_the_Professor
             Dialogue.Text = "You have moved down!";
 
             TextAnswer.Text = null;
-            SetEvent();
             state.Save(_player, _professor);
+            SetEvent();
         }
 
+        // shows the Start screen.
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Start());

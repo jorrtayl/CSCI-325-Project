@@ -1,5 +1,6 @@
 ﻿namespace Battle_of_the_Professor
 {
+    // contains all neccessary Map components, displaying images based on clicks.
     public class Map
     {
         public int Row { get; set; }
@@ -16,13 +17,14 @@
         public string BottomLeft() => map[Row + 1, Col - 1] == 0 ? @"\Map\Open.PNG" : @"\Map\Closed.PNG";
         public string BottomRight() => map[Row + 1, Col + 1] == 0 ? @"\Map\Open.PNG" : @"\Map\Closed.PNG";
 
-        public Map(int Row, int Col) //this will be changed later, but for testing this is what i am using
+        public Map(int Row, int Col)
         {
             this.Row = Row;
             this.Col = Col;
         }
 
-        public int[,] map = new int[15, 20] { //initializes map, not official map just a test map for easy movement
+        // map instantiation.
+        public int[,] map = new int[15, 20] {
             { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             { 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1},
             { 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1},
@@ -40,7 +42,7 @@
             { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
             };
 
-        //these will check if the spaces are moveable and return true if they are
+        // checks if the spaces are moveable.
         public bool RightCheck => map[Row, Col + 1] == 0 ? true : false;
         public bool LeftCheck => map[Row, Col - 1] == 0 ? true : false;
         public bool UpCheck => map[Row - 1, Col] == 0 ? true : false;

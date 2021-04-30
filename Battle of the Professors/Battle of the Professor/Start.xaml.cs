@@ -7,6 +7,7 @@ namespace Battle_of_the_Professor
     /// <summary>
     /// Interaction logic for Start.xaml
     /// </summary>
+    // the first thing the user sees, displays NEW GAME, LOAD GAME, and EXIT.
     public partial class Start : Page
     {
         public Start()

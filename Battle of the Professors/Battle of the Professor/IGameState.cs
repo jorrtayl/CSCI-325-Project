@@ -2,6 +2,7 @@
 
 namespace Battle_of_the_Professor
 {
+    // an interface that aids other classes.
     public interface IGameState
     {
         void Save(Character player, Character boss = null);

@@ -2,6 +2,7 @@
 
 namespace Battle_of_the_Professor
 {
+    // a model for any character in the game.
     public abstract class Character
     {
         private List<IGameState> _observers = new List<IGameState>();
@@ -21,11 +22,13 @@ namespace Battle_of_the_Professor
             _intellect = intellect;
         }
 
+        // attaches the methods from IGameState.
         public void Attach(IGameState observer)
         {
-            _observers.Add(observer); // adds observer into the list of _observers
+            _observers.Add(observer);
         }
 
+        // used to attach methods onto any Character children.
         public virtual void Notify()
         {
             foreach (var observer in _observers)

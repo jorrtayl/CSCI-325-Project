@@ -1,6 +1,7 @@
 ﻿namespace Battle_of_the_Professor
 {
-     public class Professor : Character
+    // professor's implementation constructors.
+    public class Professor : Character
     {
         public override bool IsDead { get => Health <= 0; }
 
